@@ -1,40 +1,62 @@
 aivp — Awesome AI Video Prompts
 
-Cross-model AI video prompt library: 10 scenes x 9 models, a structural
-translator, and a linter. Zero dependencies.
+90 curated prompts that diff 10 scenes across 9 video models, plus 2509
+attributed prompts imported from 10 MIT open-source collections. A structural
+translator and a linter are included. Zero dependencies.
 
 USAGE
   aivp <command> [options]
 
-COMMANDS
-  list                        List scenes (add --models for coverage)
+CURATED LAYER
+  list [--models]             List scenes (add --models for coverage)
   show <scene> [--model id]   Print a scene, or one model's prompt
-  search <query>              Keyword search across scenes
+  search <query>              Keyword search across curated scenes
   models [--active]           Print the model capability registry
+
+IMPORTED LAYER
+  library                     Sources, families, confidence tiers
+  find <query>                Search the imported corpus
+  get <record-id>             One record with full provenance
+  credits [--source <id>]     Attribution lines
+  stats                       Structural statistics per model family
+  inspect <record-id>         Prompt anatomy: camera, audio, duration
+
+TOOLS
   translate <from> <to> [f]   Convert a prompt between model formats
   validate <model> [file]     Lint one prompt (stdin when file is omitted)
-  validate --all              Lint every prompt in the library
-  export [--format json|md]   Emit the whole dataset
+  validate --all              Lint every curated prompt
+  export [--format json|md]   Emit the curated dataset
   help                        This text
 
 OPTIONS
   --model <id>       Restrict to one model
   --category <c>     Filter by scene category
+  --family <f>       Filter imported records by model family
+  --source <id>      Filter imported records by upstream collection
+  --kind <k>         prompt | snippet (imported) or the validation prompt kind
+  --language <l>     zh | en
+  --tier <t>         official | official-platform | reputable-3rd-party | ...
   --limit <n>        Max results (default 10)
+  --min <n>          stats: hide families with fewer records (default 5)
   --json             Machine-readable output
   --notes            Show authoring notes with a prompt
   --verbose          Include info-level lint findings
   --allow-errors     Exit 0 even when lint errors exist
-  --kind <k>         text-to-video | image-to-video | motion-control
 
 EXAMPLES
   aivp search "rainy portrait" --limit 5
   aivp show scene-10-wuxia-duel --model kling-3.0
+  aivp find "starship bridge" --family minimax --kind prompt
+  aivp get "lanshu-video-kit::sd-001"
+  aivp stats --min 20
+  aivp inspect "lanshu-video-kit::k4-001"
   aivp translate sora-2 veo-3.1 ./my-prompt.txt
   cat prompt.txt | aivp validate kling-3.0
   aivp validate --all --verbose
 
-Model IDs: seedance-2.0, kling-3.0, veo-3.1, wan-2.7, hailuo-02,
-           gemini-omni, runway-gen4.5, happyhorse-1.0, sora-2 (retired)
+Curated model ids:
+  seedance-2.0, kling-3.0, veo-3.1, wan-2.7, hailuo-02,
+  gemini-omni, runway-gen4.5, happyhorse-1.0, sora-2 (retired)
 
 Docs: https://freecreate.app
+Site: https://manallen.github.io/awesome-ai-video-prompts/
