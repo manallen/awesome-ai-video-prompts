@@ -3,4 +3,5 @@ node_modules/
 *.log
 .next/
 .tmp/
-site/*.map
+# Generated on demand by build:site; ~6 MB and reproducible from prompts/library.json
+site/library.json

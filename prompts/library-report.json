@@ -1,48 +1,57 @@
 {
   "generatedFrom": "data/snapshots",
   "counts": {
-    "records": 655,
-    "rejected": 26
+    "records": 2509,
+    "rejected": 87
   },
   "bySource": {
     "awesome-sora2-prompt": 47,
-    "lanshu-video-kit": 584,
+    "huy-seedance-prompts": 44,
+    "lanshu-video-kit": 596,
+    "learnprompt-seedance": 879,
+    "minimax-h3-cases": 684,
+    "veo3-prompts": 27,
+    "wan-3.0-prompts": 157,
+    "wan-prompts": 33,
+    "zerolu-seedance-2.5": 18,
     "zerolu-seedance": 24
   },
   "byFamily": {
     "sora": 83,
+    "seedance": 1096,
     "cogvideox": 8,
     "gemini-omni": 9,
     "higgsfield": 9,
     "happyhorse": 100,
-    "minimax": 38,
+    "minimax": 722,
     "hunyuan": 22,
     "jimeng": 22,
-    "kling": 82,
+    "kling": 94,
     "ltx-video": 8,
     "luma": 2,
     "mochi": 8,
     "pika": 22,
     "runway": 24,
-    "seedance": 155,
-    "veo": 40,
-    "wan": 23
+    "veo": 67,
+    "wan": 213
   },
   "byTier": {
-    "reputable-3rd-party": 473,
+    "reputable-3rd-party": 2324,
     "official-platform": 41,
-    "official": 131,
+    "official": 134,
     "unverified-3rd-party": 9,
     "unknown": 1
   },
   "byKind": {
-    "prompt": 584,
-    "snippet": 71
+    "prompt": 2352,
+    "snippet": 157
   },
   "rejectReasons": {
-    "too_short": 9,
-    "placeholder": 15,
-    "duplicate": 2
+    "too_short": 26,
+    "placeholder": 30,
+    "duplicate": 16,
+    "too_long": 14,
+    "html_markup": 1
   },
   "rejected": [
     {
@@ -82,66 +91,6 @@
     },
     {
       "sourceId": "lanshu-video-kit",
-      "upstreamId": "k4-001",
-      "reason": "placeholder"
-    },
-    {
-      "sourceId": "lanshu-video-kit",
-      "upstreamId": "k4-002",
-      "reason": "placeholder"
-    },
-    {
-      "sourceId": "lanshu-video-kit",
-      "upstreamId": "k4-003",
-      "reason": "placeholder"
-    },
-    {
-      "sourceId": "lanshu-video-kit",
-      "upstreamId": "k4-004",
-      "reason": "placeholder"
-    },
-    {
-      "sourceId": "lanshu-video-kit",
-      "upstreamId": "k4-005",
-      "reason": "placeholder"
-    },
-    {
-      "sourceId": "lanshu-video-kit",
-      "upstreamId": "k4-006",
-      "reason": "placeholder"
-    },
-    {
-      "sourceId": "lanshu-video-kit",
-      "upstreamId": "k4-007",
-      "reason": "placeholder"
-    },
-    {
-      "sourceId": "lanshu-video-kit",
-      "upstreamId": "k4-008",
-      "reason": "placeholder"
-    },
-    {
-      "sourceId": "lanshu-video-kit",
-      "upstreamId": "k4-009",
-      "reason": "placeholder"
-    },
-    {
-      "sourceId": "lanshu-video-kit",
-      "upstreamId": "k4-010",
-      "reason": "placeholder"
-    },
-    {
-      "sourceId": "lanshu-video-kit",
-      "upstreamId": "k4-011",
-      "reason": "placeholder"
-    },
-    {
-      "sourceId": "lanshu-video-kit",
-      "upstreamId": "k4-012",
-      "reason": "placeholder"
-    },
-    {
-      "sourceId": "lanshu-video-kit",
       "upstreamId": "ve-028",
       "reason": "placeholder"
     },
@@ -176,6 +125,385 @@
       "upstreamId": "sora2-hyperrealism-landscapes#tokyo-night-streets",
       "reason": "duplicate",
       "duplicateOf": "awesome-sora2-prompt:sora2-official-prompts#tokyo-walk"
+    },
+    {
+      "sourceId": "learnprompt-seedance",
+      "upstreamId": "bladesmith-competition-reality-tv-video",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "learnprompt-seedance",
+      "upstreamId": "seedance-2-5-f1696dad13bc",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "learnprompt-seedance",
+      "upstreamId": "youmind-1980s-slasher-yacht-octopus",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "learnprompt-seedance",
+      "upstreamId": "stylized-3d-animation-old-man-and-pigeon",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "learnprompt-seedance",
+      "upstreamId": "case-c0cf557563b7",
+      "reason": "too_long"
+    },
+    {
+      "sourceId": "learnprompt-seedance",
+      "upstreamId": "seedance-part-1-0-30s-0e5b77e47efa",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "learnprompt-seedance",
+      "upstreamId": "seedance-global-30-second-commercial-eedfe46e25bf",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-icreat-time-freeze-diner",
+      "reason": "duplicate",
+      "duplicateOf": "learnprompt-seedance:seedance-25-diner-frozen-time-rewind"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-coretan-eating-ramen-turbo-lora",
+      "reason": "too_short"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-koda-suno-beat-synced-five-environments",
+      "reason": "duplicate",
+      "duplicateOf": "lanshu-video-kit:mx-016"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2086660959054229833",
+      "reason": "too_short"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2086774589426643034",
+      "reason": "too_short"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2086871126647673308",
+      "reason": "too_short"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2087102541146522089",
+      "reason": "duplicate",
+      "duplicateOf": "lanshu-video-kit:mx-012"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2087039444146933942",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2086321605073105162",
+      "reason": "too_long"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2086294164409630916",
+      "reason": "too_long"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2086254335021961590",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2086199653922455917",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2085986114800951530",
+      "reason": "too_long"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2085607833408852170",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2085606945755693556",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2085602322177282512",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2085599659326935100",
+      "reason": "duplicate",
+      "duplicateOf": "minimax-h3-cases:x-photogpt-western-beat-title-sequence"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2084600512180113820",
+      "reason": "duplicate",
+      "duplicateOf": "lanshu-video-kit:mx-015"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2084227244533411987",
+      "reason": "duplicate",
+      "duplicateOf": "lanshu-video-kit:mx-013"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2083736220635738298",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2085973171581161893",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2087066113775665414",
+      "reason": "too_long"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2087065646903517354",
+      "reason": "too_long"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2086667268700995928",
+      "reason": "too_long"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2086426551114215889",
+      "reason": "too_long"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2086426143612440739",
+      "reason": "too_long"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2086360699505451093",
+      "reason": "too_long"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2086323087092470161",
+      "reason": "too_long"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2086322454679707867",
+      "reason": "too_long"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2086321924070834347",
+      "reason": "too_long"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2082934406910513162",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2082916440403742779",
+      "reason": "too_short"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2082774526098874724",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2082762739697815758",
+      "reason": "too_short"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2082747871103942674",
+      "reason": "duplicate",
+      "duplicateOf": "lanshu-video-kit:mx-004"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2082612279866986858",
+      "reason": "too_short"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2082611421225845158",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2082563241062875568",
+      "reason": "too_long"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2095662472346923386",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2095733073145168360",
+      "reason": "duplicate",
+      "duplicateOf": "minimax-h3-cases:x-2094576083198951676"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2095717083401371768",
+      "reason": "too_short"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2095999374472142894",
+      "reason": "too_short"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2096398628348977187",
+      "reason": "too_short"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2096749565412331841",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2096741221293265229",
+      "reason": "too_short"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2097090946555052294",
+      "reason": "too_short"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2094490203335352524",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2095086312319746202",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2093905392787165663",
+      "reason": "too_short"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2088624894401511747",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2088060516027785340",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2085308045035471054",
+      "reason": "too_short"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2084241879097303513",
+      "reason": "duplicate",
+      "duplicateOf": "lanshu-video-kit:mx-007"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2084155623139348764",
+      "reason": "too_short"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2083852804079390858",
+      "reason": "html_markup"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2091161609913921655",
+      "reason": "too_short"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2096606005068972483",
+      "reason": "duplicate",
+      "duplicateOf": "minimax-h3-cases:x-2095141166962311555"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2101981159970480258",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "minimax-h3-cases",
+      "upstreamId": "x-2111916960837468464",
+      "reason": "too_short"
+    },
+    {
+      "sourceId": "zerolu-seedance-2.5",
+      "upstreamId": "x-sd25-11",
+      "reason": "duplicate",
+      "duplicateOf": "learnprompt-seedance:youmind-travel-vlog-city-to-beach"
+    },
+    {
+      "sourceId": "zerolu-seedance-2.5",
+      "upstreamId": "x-sd25-15",
+      "reason": "duplicate",
+      "duplicateOf": "zerolu-seedance-2.5:x-sd25-14"
+    },
+    {
+      "sourceId": "zerolu-seedance-2.5",
+      "upstreamId": "x-sd25-19",
+      "reason": "duplicate",
+      "duplicateOf": "learnprompt-seedance:smartphone-beach-day-memories"
+    },
+    {
+      "sourceId": "veo3-prompts",
+      "upstreamId": "veo3_prompts_collection",
+      "reason": "duplicate",
+      "duplicateOf": "veo3-prompts:aerial_car_forest_night"
+    },
+    {
+      "sourceId": "wan-3.0-prompts",
+      "upstreamId": "x-inspired-workflows#06-spreadsheet-rows-become-a-seasonal-produce-reel",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "wan-3.0-prompts",
+      "upstreamId": "x-inspired-workflows#08-a-public-event-page-becomes-an-accessible-invitation",
+      "reason": "placeholder"
+    },
+    {
+      "sourceId": "wan-3.0-prompts",
+      "upstreamId": "x-inspired-workflows#10-one-approved-brief-three-localized-audio-versions",
+      "reason": "placeholder"
     }
   ]
 }

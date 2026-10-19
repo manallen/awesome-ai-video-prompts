@@ -54,8 +54,15 @@ test("library: record ids are unique and shell-safe", () => {
 test("library: no placeholder or HTML leakage survived the gate", () => {
   const placeholder = /\[(?=[^\]"']*[A-Z]{3,})[^\]"']{1,60}\]|\{[A-Za-z][A-Za-z ]{2,}\}|BRAND NAME/;
   const html = /<\/?(?:div|p|span|img|br)\b/i;
+  // A bracketed ALL-CAPS token on its own line is a section header
+  // (`[OUTPUT]`, `[TIMED SHOTS]`) — real prompt structure, not a placeholder.
+  const sectionHeader = /^\s*\[[A-Z0-9][A-Z0-9 /&'’+–—-]{1,40}\]\s*$/;
   for (const record of library.prompts) {
-    assert.doesNotMatch(record.prompt, placeholder, `${record.id} has a placeholder`);
+    const body = record.prompt
+      .split(/\r?\n/)
+      .filter((line) => !sectionHeader.test(line))
+      .join("\n");
+    assert.doesNotMatch(body, placeholder, `${record.id} has a placeholder`);
     assert.doesNotMatch(record.prompt, html, `${record.id} has raw HTML`);
   }
 });

@@ -1,15 +1,15 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,2,30&height=200&section=header&text=Awesome%20AI%20Video%20Prompts&fontSize=42&fontColor=ffffff&fontAlignY=38&desc=90%20curated%20%2B%20655%20imported%20%C2%B7%2017%20model%20families%20%C2%B7%20translator%20%2B%20linter&descSize=16&descAlignY=60&descColor=cccccc" alt="Awesome AI Video Prompts" width="100%">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,2,30&height=200&section=header&text=Awesome%20AI%20Video%20Prompts&fontSize=42&fontColor=ffffff&fontAlignY=38&desc=90%20curated%20%2B%202509%20imported%20%C2%B7%2017%20model%20families%20%C2%B7%20translator%20%2B%20linter&descSize=16&descAlignY=60&descColor=cccccc" alt="Awesome AI Video Prompts" width="100%">
 
 # 🎬 Awesome AI Video Prompts
 
-**Two layers: 90 hand-written prompts that diff the same scene across nine models, and 655 attributed prompts imported from open-source collections. Plus a zero-dependency CLI that translates and lints prompts.**
+**Two layers: 90 hand-written prompts that diff the same scene across nine models, and 2509 attributed prompts imported from ten open-source collections. Plus a zero-dependency CLI that translates and lints prompts.**
 
 [![Website](https://img.shields.io/badge/website-freecreate.app-ff5c8a?style=flat-square&logo=safari&logoColor=white)](https://freecreate.app)
 [![Curated](https://img.shields.io/badge/curated-90-f97316?style=flat-square)](prompts/generated.json)
-[![Imported](https://img.shields.io/badge/imported-655-06b6d4?style=flat-square)](prompts/library.json)
-[![Sources](https://img.shields.io/badge/upstream_sources-3-8b5cf6?style=flat-square)](ATTRIBUTION.md)
+[![Imported](https://img.shields.io/badge/imported-2509-06b6d4?style=flat-square)](prompts/library.json)
+[![Sources](https://img.shields.io/badge/upstream_sources-10-8b5cf6?style=flat-square)](ATTRIBUTION.md)
 [![License](https://img.shields.io/badge/license-MIT-22c55e?style=flat-square)](LICENSE)
 [![Tests](https://img.shields.io/badge/tests-37%20passing-22c55e?style=flat-square)](test)
 [![Dependencies](https://img.shields.io/badge/dependencies-0-blue?style=flat-square)](package.json)
@@ -47,7 +47,7 @@ This repo answers that in two ways:
 **Layer 1 — curated.** One scene per file, with a natively written prompt for
 every model, side by side. Diff the same shot across nine dialects.
 
-**Layer 2 — imported.** 655 prompts pulled from three MIT-licensed open-source
+**Layer 2 — imported.** 2509 prompts pulled from ten MIT-licensed open-source
 collections, each keeping its source, license, original credit, and the
 upstream collection's own confidence tier. Nothing is re-graded or laundered.
 
@@ -151,22 +151,29 @@ labels, and the vendor doc URL for each claim. Every entry is date-stamped.
 
 ## 🗃 Layer 2 — Imported library
 
-655 prompts from three MIT-licensed collections, normalized into one schema
+2509 prompts from ten MIT-licensed collections, normalized into one schema
 without losing provenance.
 
 ```bash
 $ aivp library
-Imported corpus: 655 records from 3 sources (26 rejected at import)
+Imported corpus: 2509 records from 10 sources (87 rejected at import)
 
 Sources:
-  lanshu-video-kit      584  MIT      https://github.com/cclank/lanshu-awesome-ai-video-kit
-  zerolu-seedance        24  MIT      https://github.com/ZeroLu/awesome-seedance
-  awesome-sora2-prompt   47  MIT      https://github.com/zhangchenchen/awesome_sora2_prompt
+  lanshu-video-kit       596  MIT  https://github.com/cclank/lanshu-awesome-ai-video-kit
+  learnprompt-seedance   879  MIT  https://github.com/LearnPrompt/awesome-seedance
+  minimax-h3-cases       684  MIT  https://github.com/SkyNotSilent/awesome-MiniMax-H3-cases
+  wan-3.0-prompts        157  MIT  https://github.com/flaqai/awesome_wan-3-0-prompts
+  awesome-sora2-prompt    47  MIT  https://github.com/zhangchenchen/awesome_sora2_prompt
+  huy-seedance-prompts    44  MIT  https://github.com/HuyLe82US/awesome-seedance-prompts
+  wan-prompts             33  MIT  https://github.com/casimirvance5/wan-prompts
+  veo3-prompts            27  MIT  https://github.com/liu-kaining/Awesome-Veo3-Prompts
+  zerolu-seedance         24  MIT  https://github.com/ZeroLu/awesome-seedance
+  zerolu-seedance-2.5     18  MIT  https://github.com/ZeroLu/awesome-seedance-2.5
 
 By model family:
-  seedance  155   happyhorse  100   sora  83   kling  82   veo  40
-  minimax    38   runway       24   wan   23   hunyuan 22  jimeng 22
-  pika       22   gemini-omni   9   higgsfield 9  cogvideox 8 …
+  seedance 1096 · minimax 722 · wan 213 · happyhorse 100 · kling 94
+  sora 83 · veo 67 · runway 24 · hunyuan 22 · jimeng 22 · pika 22
+  gemini-omni 9 · higgsfield 9 · cogvideox 8 · ltx-video 8 · mochi 8 · luma 2
 ```
 
 ### What every imported record carries
@@ -186,8 +193,8 @@ Confidence tiers seen in the data:
 
 | Tier | Count | Meaning |
 |---|---:|---|
-| `reputable-3rd-party` | 473 | Curated third-party blogs and review sites |
-| `official` | 131 | Vendor-owned domains |
+| `reputable-3rd-party` | 2324 | Curated third-party blogs, review sites, community cases |
+| `official` | 134 | Vendor-owned domains / vendor-published prompts |
 | `official-platform` | 41 | Official GitHub / HuggingFace / Replicate |
 | `unverified-3rd-party` | 9 | Kept, labeled, not endorsed |
 | `unknown` | 1 | No URL |
@@ -201,14 +208,16 @@ that way here.
 data/snapshots/      ← committed upstream bytes (git-cloneable, offline-reproducible)
         │
         ├─ scripts/importers/sources.mjs     license gate + source registry
-        ├─ scripts/importers/markdown.mjs    heading/fence/CJK-label extraction
+        ├─ scripts/importers/markdown.mjs    heading / fence / CJK-label extraction
         ├─ scripts/importers/families.mjs    model → family/variant, non-destructive
         │
         ▼
-scripts/import-library.mjs                   gate, dedupe, normalize
+scripts/import-library.mjs                   8 parsers: JSON, JSONL, markdown bundles
+        │                                   gate → dedupe → normalize → safe ids
         ▼
-prompts/library.json        (655 records, provenance intact)
-prompts/library-report.json (26 rejections, each with a reason)
+        ▼
+prompts/library.json        (2509 records, provenance intact)
+prompts/library-report.json (87 rejections, each with a reason)
 ```
 
 The importer refuses a source whose license is not MIT, Apache-2.0, CC0-1.0 or
@@ -224,7 +233,25 @@ npm run refresh:library     # re-download snapshots from upstream, then rebuild
 Builds are deterministic: `npm run build` twice produces byte-identical output,
 which is why CI can assert the committed artifacts are current.
 
+### Parser coverage
+
+Each upstream collection stores prompts differently. Rather than force one
+shape, the importer has a parser per shape and records which one ran.
+
+| Source | Shape | Parser | Notable handling |
+|---|---|---|---|
+| lanshu-video-kit | JSON records + cross-model matrix | `lanshu-prompts`, `lanshu-matrix` | Keeps each record's `source.tier` and credit verbatim |
+| LearnPrompt awesome-seedance | 886 JSON cases | `learnprompt-cases` | Keeps evidence level (L0–L2) and retest verdicts as tags/notes |
+| awesome-MiniMax-H3-cases | 2862 JSON cases | `minimax-cases` | **Imports only** the 743 records whose prompt is published upstream (`creator-verbatim` / `official-verbatim`) |
+| awesome_wan-3-0-prompts | Markdown, `## NN｜Title` | `markdown-bundle-categorized` | Parses the mode/suggestion line into `params` |
+| Awesome-Veo3-Prompts | Markdown wrapping structured JSON | `markdown-bundle-json` | **Keeps JSON verbatim** — flattening it would destroy the shot spec |
+| awesome-seedance-prompts (HuyLe82US) | One markdown file per prompt | `markdown-bundle` | Carries each file's X-author credit |
+| wan-prompts | JSONL | `wan-jsonl` | Each record's structural `tip` becomes the note |
+| awesome-seedance-2.5 | Bilingual JSON | `zerolu-seedance25` | English body canonical, Chinese retained as alternate |
+| awesome-seedance, awesome_sora2_prompt | Markdown | `markdown-heading-prompt` | Generic heading + fenced-block extraction |
+
 ### Collections considered and not imported
+
 
 | Collection | Reason |
 |---|---|
@@ -234,6 +261,12 @@ which is why CI can assert the committed artifacts are current.
 | `Anil-matcha/Awesome-GPT-Image-2-API-Prompts` | No license file, near-empty repo |
 | `YouMind-OpenLab/awesome-gpt-image-2` | CC BY, but image-only — out of scope for a video library |
 | `freestylefly/awesome-gpt-image-2` | MIT, but image-only — out of scope |
+| `YouMind-OpenLab/awesome-seedance-2-prompts` | NOASSERTION license (unresolvable) |
+| `AtlasCloudAI/awesome-seedance-2.5-prompts-skills` | NOASSERTION license |
+| `BaYue-SYJ/shuixian-prompts` | NOASSERTION license |
+| `Emily2040/seedance-2.0` | MIT, but the repo is a skill/guide set with no prompt corpus |
+| `dexhunter/seedance2-skill` | MIT, but a single SKILL.md of guidance, not a prompt corpus |
+| `OSideMedia/higgsfield-ai-prompt-skill` | MIT, prompt *rules* rather than prompts |
 
 Full reasoning in [ATTRIBUTION.md](ATTRIBUTION.md). If you maintain an
 MIT/Apache/CC0 video prompt collection, open an issue — adding a source is a

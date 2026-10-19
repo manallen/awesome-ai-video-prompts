@@ -60,6 +60,111 @@ export const SOURCES = [
     notes:
       "Includes the official OpenAI Sora showcase prompts and a curated viral set. Sora 2 is retired; these are archival reference and are marked `modelStatus: retired`.",
   },
+  {
+    id: "learnprompt-seedance",
+    name: "LearnPrompt awesome-seedance",
+    owner: "LearnPrompt",
+    repositoryUrl: "https://github.com/LearnPrompt/awesome-seedance",
+    license: "MIT",
+    licenseStatus: "verified",
+    requireAttribution: true,
+    attribution: "LearnPrompt — awesome-seedance (MIT)",
+    files: [
+      { path: "data/cases.json", snapshot: "learnprompt-seedance-cases.json", parser: "learnprompt-cases" },
+    ],
+    notes:
+      "886 Seedance cases with per-case creator credit, an evidence level (L0/L1/L2) and, where a case was re-run on another model, the retest verdict. `provenanceVerified` is true for every case. Model strings come from the `models` array; image-model entries in that array are ignored.",
+  },
+  {
+    id: "minimax-h3-cases",
+    name: "awesome-MiniMax-H3-cases",
+    owner: "SkyNotSilent",
+    repositoryUrl: "https://github.com/SkyNotSilent/awesome-MiniMax-H3-cases",
+    license: "MIT",
+    licenseStatus: "verified",
+    requireAttribution: true,
+    attribution: "SkyNotSilent — awesome-MiniMax-H3-cases (MIT)",
+    files: [
+      { path: "data/cases.json", snapshot: "skynotsilent-minimax-cases.json", parser: "minimax-cases" },
+    ],
+    notes:
+      "2862 MiniMax H3 cases from X. Only records whose prompt is published upstream are imported: `promptProvenance` must be `creator-verbatim` or `official-verbatim`. The remaining 2119 records carry `not-published` and no prompt text, so importing them would mean inventing content.",
+  },
+  {
+    id: "wan-prompts",
+    name: "wan-prompts",
+    owner: "casimirvance5",
+    repositoryUrl: "https://github.com/casimirvance5/wan-prompts",
+    license: "MIT",
+    licenseStatus: "verified",
+    requireAttribution: true,
+    attribution: "casimirvance5 — wan-prompts (MIT)",
+    files: [
+      { path: "library.jsonl", snapshot: "wan-prompts-library.jsonl", parser: "wan-jsonl" },
+    ],
+    notes:
+      "33 Wan 3.0 recipes with the settings each was written for. Each record carries a `tip` explaining the structural decision, preserved as the record's note.",
+  },
+  {
+    id: "zerolu-seedance-2.5",
+    name: "awesome-seedance-2.5",
+    owner: "ZeroLu",
+    repositoryUrl: "https://github.com/ZeroLu/awesome-seedance-2.5",
+    license: "MIT",
+    licenseStatus: "verified",
+    requireAttribution: true,
+    attribution: "ZeroLu — awesome-seedance-2.5 (MIT)",
+    files: [
+      { path: "data/community-x-seedance-cases.json", snapshot: "zerolu-seedance25-cases.json", parser: "zerolu-seedance25" },
+    ],
+    notes:
+      "Community X cases for Seedance 2.5. Titles and prompts are bilingual objects; the English body is canonical and the Chinese is kept as `titleAlt`.",
+  },
+  {
+    id: "huy-seedance-prompts",
+    name: "awesome-seedance-prompts",
+    owner: "HuyLe82US",
+    repositoryUrl: "https://github.com/HuyLe82US/awesome-seedance-prompts",
+    license: "MIT",
+    licenseStatus: "verified",
+    requireAttribution: true,
+    attribution: "HuyLe82US — awesome-seedance-prompts (MIT)",
+    files: [
+      { path: "prompts/", snapshot: "huy-seedance-md.json", parser: "markdown-bundle" },
+    ],
+    notes:
+      "57 single-prompt markdown files, one category per directory. Every file credits its original X author, which is carried through as `upstreamCredit`.",
+  },
+  {
+    id: "veo3-prompts",
+    name: "Awesome-Veo3-Prompts",
+    owner: "liu-kaining",
+    repositoryUrl: "https://github.com/liu-kaining/Awesome-Veo3-Prompts",
+    license: "MIT",
+    licenseStatus: "verified",
+    requireAttribution: true,
+    attribution: "liu-kaining — Awesome-Veo3-Prompts (MIT)",
+    files: [
+      { path: "prompts/", snapshot: "liu-veo3-md.json", parser: "markdown-bundle-json" },
+    ],
+    notes:
+      "Veo 3 prompts written as structured JSON shot specs (camera / subject / scene / visual_style blocks) rather than prose. The JSON is kept verbatim — reformatting it into prose would destroy the structure that makes it useful.",
+  },
+  {
+    id: "wan-3.0-prompts",
+    name: "awesome_wan-3-0-prompts",
+    owner: "flaqai",
+    repositoryUrl: "https://github.com/flaqai/awesome_wan-3-0-prompts",
+    license: "MIT",
+    licenseStatus: "verified",
+    requireAttribution: true,
+    attribution: "flaqai — awesome_wan-3-0-prompts (MIT)",
+    files: [
+      { path: "prompts/", snapshot: "flaqai-wan3-md.json", parser: "markdown-bundle-categorized" },
+    ],
+    notes:
+      "Wan 3.0 recipes grouped by category file. Each entry opens with a mode line (`T2V / R2V`, suggested duration and aspect ratio) which is captured as the record's params.",
+  },
 ];
 
 export function getSource(id) {

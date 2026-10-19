@@ -28,8 +28,8 @@ const counts = {
   sources: library.sources.length,
 };
 
-// The imported corpus is large. Trim to the fields the page renders so the
-// document stays a reasonable size; the full JSON stays in the repo.
+// The imported corpus is ~8 MB. Inlining it would make index.html unloadable
+// on mobile, so it ships as a separate asset fetched when the tab opens.
 const imported = library.prompts.map((p) => ({
   id: p.id,
   t: p.title,
@@ -45,11 +45,13 @@ const imported = library.prompts.map((p) => ({
   tier: p.upstreamTier,
 }));
 
+writeFileSync(path.join(siteDir, "library.json"), JSON.stringify({ imported }));
+
 const payload = {
   counts,
   models,
   scenes,
-  imported,
+  // `imported` is fetched from library.json on demand, never inlined.
   sources: library.sources,
   bySource: library.bySource,
   byFamily: library.byFamily,
@@ -195,7 +197,7 @@ const html = `<!doctype html>
 <script id="data" type="application/json">${JSON.stringify(payload).replace(/</g, "\\u003c")}</script>
 <script>
 (() => {
-  const { models, scenes, imported, sources, counts, bySource } = JSON.parse(document.getElementById("data").textContent);
+  const { models, scenes, sources, counts, bySource } = JSON.parse(document.getElementById("data").textContent);
   const esc = (s) => String(s ?? "").replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
   const modelStatus = new Map(models.map(m => [m.id, m.status]));
   const tierLabel = (t) => t === "official" || t === "official-platform" ? t
@@ -208,6 +210,7 @@ const html = `<!doctype html>
     tab.addEventListener("click", () => {
       for (const t of tabs) t.setAttribute("aria-selected", String(t === tab));
       for (const [name, el] of Object.entries(views)) el.hidden = name !== tab.dataset.view;
+      if (tab.dataset.view === "imported") ensureImported();
     });
   }
 
@@ -283,18 +286,31 @@ const html = `<!doctype html>
   const lmore = document.getElementById("lmore");
   const PAGE = 24;
   let shownCount = PAGE;
+  // Populated when the imported tab first opens; the corpus is ~8 MB and
+  // should not block first paint of the curated tab.
+  let imported = [];
 
-  const families = [...new Set(imported.map(p => p.f))].sort();
-  for (const f of families) {
-    lfam.insertAdjacentHTML("beforeend", '<option value="' + esc(f) + '">' + esc(f) + ' (' +
-      imported.filter(p => p.f === f).length + ')</option>');
-  }
   for (const s of sources) {
     lsrc.insertAdjacentHTML("beforeend", '<option value="' + esc(s.id) + '">' + esc(s.name) +
       ' (' + (bySource?.[s.id] ?? 0) + ')</option>');
   }
 
   const sourceById = new Map(sources.map(s => [s.id, s]));
+  let importedReady = false;
+
+  async function ensureImported() {
+    if (importedReady) return;
+    importedReady = true;
+    lgrid.innerHTML = '<div class="empty">Loading ' + counts.imported + ' prompts…</div>';
+    const response = await fetch("library.json", { cache: "force-cache" });
+    const data = await response.json();
+    imported = data.imported;
+    for (const f of [...new Set(imported.map(p => p.f))].sort()) {
+      lfam.insertAdjacentHTML("beforeend", '<option value="' + esc(f) + '">' + esc(f) + ' (' +
+        imported.filter(p => p.f === f).length + ')</option>');
+    }
+    renderImported(true);
+  }
 
   function matched() {
     const term = lq.value.trim().toLowerCase();

@@ -1,10 +1,10 @@
 # 🎬 Awesome AI Video Prompts
 
-**两层结构：90 条手工撰写的提示词（同一场景在 9 个模型上的原生写法对照），加上 655 条从开源库导入、带完整出处与授权的提示词。附零依赖 CLI：跨模型翻译 + 校验。**
+**两层结构：90 条手工撰写的提示词（同一场景在 9 个模型上的原生写法对照），加上 2509 条从 10 个开源库导入、带完整出处与授权的提示词。附零依赖 CLI：跨模型翻译 + 校验。**
 
 [![Website](https://img.shields.io/badge/website-freecreate.app-ff5c8a?style=flat-square&logo=safari&logoColor=white)](https://freecreate.app)
 [![Curated](https://img.shields.io/badge/curated-90-f97316?style=flat-square)](prompts/generated.json)
-[![Imported](https://img.shields.io/badge/imported-655-06b6d4?style=flat-square)](prompts/library.json)
+[![Imported](https://img.shields.io/badge/imported-2509-06b6d4?style=flat-square)](prompts/library.json)
 [![License](https://img.shields.io/badge/license-MIT-22c55e?style=flat-square)](LICENSE)
 
 [English README →](README.md) · [🌐 在线浏览](https://manallen.github.io/awesome-ai-video-prompts/)
@@ -24,7 +24,7 @@ GitHub 上的"提示词合集"绝大多数是：一个人用一种写法，复�
 
 **第一层 ·  curated（原创）**：每个场景一个文件，9 个模型各一份原生写法，并排对照。
 
-**第二层 · imported（导入）**：655 条来自 3 个 MIT 开源库，每条保留来源、授权、原始署名，以及上游自己的置信度分级 —— 不改写、不升格。
+**第二层 · imported（导入）**：2509 条来自 10 个 MIT 开源库，每条保留来源、授权、原始署名，以及上游自己的置信度分级 —— 不改写、不升格。
 
 ## 🚀 快速开始
 
@@ -81,11 +81,18 @@ libraryRecord("lanshu-video-kit::sd-001").upstreamCredit;
 
 | 来源 | 仓库 | 授权 | 条数 |
 |---|---|---|---:|
-| lanshu-awesome-ai-video-kit | [cclank](https://github.com/cclank/lanshu-awesome-ai-video-kit) | MIT | 584 |
-| awesome-seedance | [ZeroLu](https://github.com/ZeroLu/awesome-seedance) | MIT | 24 |
+| LearnPrompt awesome-seedance | [LearnPrompt](https://github.com/LearnPrompt/awesome-seedance) | MIT | 879 |
+| awesome-MiniMax-H3-cases | [SkyNotSilent](https://github.com/SkyNotSilent/awesome-MiniMax-H3-cases) | MIT | 684 |
+| awesome-ai-video-kit | [cclank](https://github.com/cclank/lanshu-awesome-ai-video-kit) | MIT | 596 |
+| awesome_wan-3-0-prompts | [flaqai](https://github.com/flaqai/awesome_wan-3-0-prompts) | MIT | 157 |
 | awesome_sora2_prompt | [zhangchenchen](https://github.com/zhangchenchen/awesome_sora2_prompt) | MIT | 47 |
+| awesome-seedance-prompts | [HuyLe82US](https://github.com/HuyLe82US/awesome-seedance-prompts) | MIT | 44 |
+| wan-prompts | [casimirvance5](https://github.com/casimirvance5/wan-prompts) | MIT | 33 |
+| Awesome-Veo3-Prompts | [liu-kaining](https://github.com/liu-kaining/Awesome-Veo3-Prompts) | MIT | 27 |
+| awesome-seedance | [ZeroLu](https://github.com/ZeroLu/awesome-seedance) | MIT | 24 |
+| awesome-seedance-2.5 | [ZeroLu](https://github.com/ZeroLu/awesome-seedance-2.5) | MIT | 18 |
 
-模型族分布：seedance 155 · happyhorse 100 · sora 83 · kling 82 · veo 40 · minimax 38 · runway 24 · wan 23 · hunyuan 22 · jimeng 22 · pika 22 · 其他 52。
+模型族分布：seedance 1096 · minimax 722 · wan 213 · happyhorse 100 · kling 94 · sora 83 · veo 67 · runway 24 · hunyuan/jimeng/pika 各 22 · 其余 44。
 
 **每条记录保留**：来源 ID / 仓库 URL / 授权 / 上游 ID / 原始署名 / 原始 URL / 上游置信度分级 / 上游模型字符串（逐字）。模型族与版本号是**派生**的，与原始字符串并存，不替代。
 
@@ -101,9 +108,11 @@ data/snapshots/  ← 提交入库的上游原始字节（可离线复现，可�
 prompts/library.json + prompts/library-report.json
 ```
 
-被拒绝 26 条，**每条都写明原因**，不静默丢弃。构建确定：连跑两次输出字节相同，因此 CI 可以断言提交产物是最新的。
+被拒绝 87 条，**每条都写明原因**，不静默丢弃。构建确定：连跑两次输出字节相同，因此 CI 可以断言提交产物是最新的。
 
-**考虑过但未导入**（详见 [ATTRIBUTION.md](ATTRIBUTION.md)）：songguoxs/awesome-video-prompts（无 LICENSE）、gpt-image2/awesome-gptimage2-prompts（无 LICENSE）、itgoyo/awesome-gpt-image2-prompt（无 LICENSE）、YouMind-OpenLab 与 freestylefly（有授权但为图像提示词，超出范围）。
+**考虑过但未导入**（详见 [ATTRIBUTION.md](ATTRIBUTION.md)）：songguoxs/awesome-video-prompts、gpt-image2/awesome-gptimage2-prompts、itgoyo/awesome-gpt-image2-prompt（均无 LICENSE）；YouMind-OpenLab/awesome-seedance-2-prompts、AtlasCloudAI、BaYue-SYJ（NOASSERTION 无法确认授权）；YouMind 与 freestylefly 的 GPT Image 库（授权合规但是图像提示词，超出范围）。
+
+**一条特殊处理**：MiniMax H3 的 2862 条案例中有 2119 条 `promptProvenance: not-published`，即原文根本没有发布提示词。这类记录一律不导入 —— 否则等于我们替作者写提示词再署他的名字。
 
 ## 🔁 跨模型翻译
 
