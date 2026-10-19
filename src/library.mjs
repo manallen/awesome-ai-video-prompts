@@ -9,6 +9,7 @@
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+import { analyzePrompt, summarize } from "./analyze.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const libraryPath = path.resolve(here, "..", "prompts", "library.json");
@@ -126,4 +127,35 @@ export function attributionLines(records) {
     });
   }
   return lines;
+}
+
+// --- corpus statistics -----------------------------------------------------
+
+let analysisCache = null;
+
+function analysesFor(records) {
+  const map = new Map();
+  for (const record of records) map.set(record.id, analyzePrompt(record.prompt, record.modelFamily));
+  return map;
+}
+
+/** Per-family structural statistics over the whole imported corpus. */
+export function corpusStats(options = {}) {
+  const library = loadLibrary();
+  if (!analysisCache) analysisCache = analysesFor(library.prompts);
+  const rows = summarize(library.prompts, analysisCache);
+
+  const minCount = options.minCount ?? 5;
+  return {
+    total: library.prompts.length,
+    minCount,
+    families: rows.filter((r) => r.count >= minCount),
+    excluded: rows.filter((r) => r.count < minCount).map((r) => ({ family: r.family, count: r.count })),
+  };
+}
+
+/** Analysis for one record, by id. */
+export function analyzeRecord(id) {
+  const record = libraryRecord(id);
+  return { record, analysis: analyzePrompt(record.prompt, record.modelFamily) };
 }

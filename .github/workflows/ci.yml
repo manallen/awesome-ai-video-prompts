@@ -21,9 +21,12 @@ jobs:
         run: npm run build:data
       - name: Build imported library from committed snapshots
         run: npm run build:library
+      - name: Build analysis doc
+        run: npm run build:analysis
       - name: Fail if generated artifacts are stale
         run: |
           git diff --exit-code prompts/generated.json prompts/library.json prompts/library-report.json \
+            docs/CORPUS-ANALYSIS.md \
             || (echo "::error::generated artifacts are stale — run npm run build and commit the result" && exit 1)
       - name: Refuse incompatible upstream licenses
         run: |

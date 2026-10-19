@@ -13,7 +13,10 @@ import {
   searchLibrary,
   libraryRecord,
   attributionLines,
+  corpusStats,
+  analyzeRecord,
 } from "./library.mjs";
+import { analyzePrompt } from "./analyze.mjs";
 
 export const models = loadModels();
 export const scenes = loadScenes();
@@ -40,7 +43,16 @@ export function validate(prompt, modelId, options) {
 }
 
 // --- imported third-party corpus (prompts/library.json) ---
-export { loadLibrary, libraryIndex, searchLibrary, libraryRecord, attributionLines };
+export {
+  loadLibrary,
+  libraryIndex,
+  searchLibrary,
+  libraryRecord,
+  attributionLines,
+  corpusStats,
+  analyzeRecord,
+  analyzePrompt,
+};
 
 export { translate, validateAll, countWords, countCJK, getModel, activeModels, retiredModels };
 export { parseLabeled, parseFourBlock, extractSemantics, renderFor } from "./translate.mjs";
@@ -57,4 +69,6 @@ export default {
   searchLibrary,
   libraryRecord,
   libraryIndex,
+  corpusStats,
+  analyzePrompt,
 };

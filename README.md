@@ -11,13 +11,14 @@
 [![Imported](https://img.shields.io/badge/imported-2509-06b6d4?style=flat-square)](prompts/library.json)
 [![Sources](https://img.shields.io/badge/upstream_sources-10-8b5cf6?style=flat-square)](ATTRIBUTION.md)
 [![License](https://img.shields.io/badge/license-MIT-22c55e?style=flat-square)](LICENSE)
-[![Tests](https://img.shields.io/badge/tests-37%20passing-22c55e?style=flat-square)](test)
+[![Tests](https://img.shields.io/badge/tests-55%20passing-22c55e?style=flat-square)](test)
 [![Dependencies](https://img.shields.io/badge/dependencies-0-blue?style=flat-square)](package.json)
 
 [🌐 Browse online](https://manallen.github.io/awesome-ai-video-prompts/) ·
 [🚀 Quick start](#-quick-start) ·
 [📚 Curated scenes](#-layer-1--curated-scenes) ·
 [🗃 Imported library](#-layer-2--imported-library) ·
+[📊 Corpus analysis](docs/CORPUS-ANALYSIS.md) ·
 [🔁 Translator](#-cross-model-translation) ·
 [✅ Validator](#-validate-before-you-spend-credits) ·
 [📜 Attribution](#-attribution)
@@ -274,6 +275,59 @@ registry entry plus a snapshot.
 
 ---
 
+## 📊 Corpus analysis
+
+The imported corpus is large enough to measure instead of argue. `aivp stats`
+computes structural facts across 2509 prompts and 16 model families.
+
+```bash
+$ aivp stats
+family              n  words p50  words p90   cams     dur%  med dur   dlg%   aud%   neg%   ref%  timeline%
+------------------------------------------------------------------------------------------------------------
+seedance         1096        271        815   1.04      47%       15    26%    58%    46%    17%        39%
+minimax           722        269       1041   0.81      43%       15    26%    57%    41%    20%        41%
+wan               213        150        269   0.47      69%       10    20%    48%    54%    17%        38%
+happyhorse        100         35         50   0.48      18%        8     7%    43%     4%     1%        15%
+kling              94         88        255   0.71      32%       20    26%    73%    17%     6%        15%
+sora               83         83        173   0.52      12%       20     7%    46%     2%     7%        12%
+veo                67        145        294   0.58      12%       14    51%    79%    13%    10%        12%
+```
+
+Full breakdown with column definitions: **[docs/CORPUS-ANALYSIS.md](docs/CORPUS-ANALYSIS.md)**.
+
+Three findings that survive reading the underlying prompts:
+
+1. **Two length cultures.** HappyHorse sits at a **35-word median**; Seedance and
+   MiniMax near **271**. An eightfold gap — copy-pasting between them loses either
+   the subject or the detail.
+2. **Audio direction is a family habit, not a capability.** Veo prompts name
+   dialogue 51% of the time; HappyHorse prompts 7%. Both generate audio.
+3. **Negative constraints are not universal.** Pika-family prompts carry
+   exclusions 91% of the time; HappyHorse 4%. Porting a prompt between them flips
+   you between over- and under-constrained.
+
+Inspect one prompt's anatomy:
+
+```bash
+$ aivp inspect "lanshu-video-kit::k4-001"
+Kling 4.0 四世界罗盘 Match Cut
+model                kling-4.0
+family               kling
+chars / words        1834 / 272
+camera moves         push-in, macro
+audio cues           ambience
+duration             12s
+timeline / beats     yes
+negative constraints yes
+labeled blocks       none
+```
+
+Every figure is a literal pattern match. The tables describe **this corpus**, not
+what any model requires — a prompt that omits a cue is not evidence the model can
+do without it.
+
+---
+
 ## 🔁 Cross-model translation
 
 ```bash
@@ -352,7 +406,8 @@ awesome-ai-video-prompts/
 ├── src/
 │   ├── models.mjs             # registry loading
 │   ├── search.mjs             # BM25-lite scorer for curated scenes
-│   ├── library.mjs            # imported-corpus search + attribution
+│   ├── library.mjs            # imported-corpus search + attribution + stats
+│   ├── analyze.mjs            # prompt anatomy: camera, audio, duration, structure
 │   ├── translate.mjs          # labeled ↔ four-block ↔ prose renderers
 │   ├── validate.mjs           # the lint rules
 │   └── index.mjs              # public API
@@ -360,13 +415,16 @@ awesome-ai-video-prompts/
 │   ├── import-library.mjs     # snapshots → library.json
 │   ├── importers/             # sources, markdown, families
 │   ├── build-data.mjs         # scenes/ → generated.json
+│   ├── build-analysis.mjs     # library.json → docs/CORPUS-ANALYSIS.md
 │   ├── build-site.mjs         # → site/index.html
 │   └── serve-site.mjs         # local preview
 ├── bin/cli.mjs                # aivp
 ├── site/index.html            # GitHub Pages (static, no framework)
-├── docs/PROMPT-TRANSLATION.md
+├── docs/
+│   ├── PROMPT-TRANSLATION.md
+│   └── CORPUS-ANALYSIS.md     # generated statistics
 ├── ATTRIBUTION.md
-└── test/                      # 37 tests
+└── test/                      # 55 tests
 ```
 
 ---
@@ -402,7 +460,7 @@ The highest-value contribution is a **curated scene**, not a style tweak.
 
 ```bash
 npm run build             # curated + imported + site
-npm test                  # 37 tests
+npm test                  # 55 tests
 node bin/cli.mjs validate --all
 ```
 

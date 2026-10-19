@@ -15,6 +15,8 @@
  *   aivp find <query> [--family X]     Search 600+ imported prompts
  *   aivp get <record-id>               Print one imported record in full
  *   aivp credits [--source X]          Attribution lines for imported records
+ *   aivp stats [--json]                Structural statistics per model family
+ *   aivp inspect <record-id>           Prompt anatomy for one imported record
  */
 import { readFileSync } from "node:fs";
 import { loadModels, loadScenes } from "../src/models.mjs";
@@ -27,6 +29,8 @@ import {
   searchLibrary,
   libraryRecord,
   attributionLines,
+  corpusStats,
+  analyzeRecord,
 } from "../src/library.mjs";
 
 const argv = process.argv.slice(2);
@@ -283,6 +287,77 @@ const COMMANDS = {
     process.stdout.write("\n");
     process.stdout.write(`${record.prompt.trim()}\n`);
     if (record.notes) process.stdout.write(`\n# ${record.notes}\n`);
+  },
+
+  stats() {
+    const stats = corpusStats({ minCount: Number(flag("min", 5)) });
+    if (has("json")) {
+      json(stats);
+      return;
+    }
+    const header = ["family", "n", "words p50", "words p90", "cams", "dur%", "med dur", "dlg%", "aud%", "neg%", "ref%", "timeline%"];
+    const width = [14, 6, 10, 10, 6, 8, 8, 6, 6, 6, 6, 10];
+    const pad = (v, w) => String(v).padStart(w);
+    process.stdout.write(header.map((h, i) => (i === 0 ? h.padEnd(width[i]) : pad(h, width[i]))).join(" ") + "\n");
+    process.stdout.write("-".repeat(width.reduce((a, b) => a + b + 1, 0)) + "\n");
+    for (const r of stats.families) {
+      const cells = [
+        r.family,
+        r.count,
+        r.wordsP50,
+        r.wordsP90,
+        r.avgCameras,
+        `${Math.round(r.durationRate * 100)}%`,
+        r.medianDuration ?? "-",
+        `${Math.round(r.dialogueRate * 100)}%`,
+        `${Math.round(r.audioRate * 100)}%`,
+        `${Math.round(r.negativeRate * 100)}%`,
+        `${Math.round(r.referenceRate * 100)}%`,
+        `${Math.round(r.timelineRate * 100)}%`,
+      ];
+      process.stdout.write(cells.map((c, i) => (i === 0 ? String(c).padEnd(width[i]) : pad(c, width[i]))).join(" ") + "\n");
+    }
+    if (stats.excluded.length > 0) {
+      process.stdout.write(
+        `\nOmitted (fewer than ${stats.minCount} records): ` +
+          stats.excluded.map((e) => `${e.family} (${e.count})`).join(", ") +
+          "\n",
+      );
+    }
+    process.stdout.write(
+      "\nPercentages are the share of prompts in that family matching a literal pattern." +
+        " They describe this corpus, not the model's requirements.\n",
+    );
+  },
+
+  inspect() {
+    const [id] = positionals();
+    if (!id) throw new Error("Usage: aivp inspect <record-id>");
+    const { record, analysis } = analyzeRecord(id);
+    if (has("json")) {
+      json({ id: record.id, title: record.title, analysis });
+      return;
+    }
+    process.stdout.write(`${record.title}\n${record.id}\n\n`);
+    const rows = [
+      ["model", record.model],
+      ["family", record.modelFamily],
+      ["kind", record.kind],
+      ["language", record.language],
+      ["chars / words", `${analysis.chars} / ${analysis.words}`],
+      ["sentences", analysis.sentences],
+      ["camera moves", analysis.cameras.join(", ") || "none detected"],
+      ["shot sizes", analysis.shotSizes.join(", ") || "none detected"],
+      ["audio cues", analysis.audio.join(", ") || "none detected"],
+      ["duration", analysis.hasDuration ? `${analysis.durationSeconds}s` : "not stated"],
+      ["aspect", analysis.aspect ?? "not stated"],
+      ["timeline / beats", analysis.hasTimeline ? "yes" : "no"],
+      ["multi-scene", analysis.multiScene ? "yes" : "no"],
+      ["reference-driven", analysis.hasReference ? "yes" : "no"],
+      ["negative constraints", analysis.hasNegative ? "yes" : "no"],
+      ["labeled blocks", analysis.labeledBlocks > 0 ? String(analysis.labeledBlocks) : "none"],
+    ];
+    for (const [k, v] of rows) process.stdout.write(`${k.padEnd(20)} ${v}\n`);
   },
 
   credits() {
