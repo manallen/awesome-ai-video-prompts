@@ -1,26 +1,26 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,2,30&height=200&section=header&text=Awesome%20AI%20Video%20Prompts&fontSize=42&fontColor=ffffff&fontAlignY=38&desc=10%20scenes%20%C3%97%209%20models%20%C2%B7%2090%20native%20prompts%20%C2%B7%20translator%20%2B%20linter&descSize=16&descAlignY=60&descColor=cccccc" alt="Awesome AI Video Prompts" width="100%">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,2,30&height=200&section=header&text=Awesome%20AI%20Video%20Prompts&fontSize=42&fontColor=ffffff&fontAlignY=38&desc=90%20curated%20%2B%20655%20imported%20%C2%B7%2017%20model%20families%20%C2%B7%20translator%20%2B%20linter&descSize=16&descAlignY=60&descColor=cccccc" alt="Awesome AI Video Prompts" width="100%">
 
 # 🎬 Awesome AI Video Prompts
 
-**The same ten scenes, written natively for nine video models — plus a zero-dependency CLI that translates and lints prompts.**
+**Two layers: 90 hand-written prompts that diff the same scene across nine models, and 655 attributed prompts imported from open-source collections. Plus a zero-dependency CLI that translates and lints prompts.**
 
 [![Website](https://img.shields.io/badge/website-freecreate.app-ff5c8a?style=flat-square&logo=safari&logoColor=white)](https://freecreate.app)
-[![Prompts](https://img.shields.io/badge/prompts-90-f97316?style=flat-square)](prompts/generated.json)
-[![Models](https://img.shields.io/badge/models-9-8b5cf6?style=flat-square)](prompts/models.json)
-[![Scenes](https://img.shields.io/badge/scenes-10-06b6d4?style=flat-square)](prompts/scenes)
+[![Curated](https://img.shields.io/badge/curated-90-f97316?style=flat-square)](prompts/generated.json)
+[![Imported](https://img.shields.io/badge/imported-655-06b6d4?style=flat-square)](prompts/library.json)
+[![Sources](https://img.shields.io/badge/upstream_sources-3-8b5cf6?style=flat-square)](ATTRIBUTION.md)
 [![License](https://img.shields.io/badge/license-MIT-22c55e?style=flat-square)](LICENSE)
-[![Tests](https://img.shields.io/badge/tests-17%20passing-22c55e?style=flat-square)](test/library.test.mjs)
+[![Tests](https://img.shields.io/badge/tests-37%20passing-22c55e?style=flat-square)](test)
 [![Dependencies](https://img.shields.io/badge/dependencies-0-blue?style=flat-square)](package.json)
 
-[🌐 Browse online](https://freecreate.app) ·
+[🌐 Browse online](https://manallen.github.io/awesome-ai-video-prompts/) ·
 [🚀 Quick start](#-quick-start) ·
-[📚 The scenes](#-the-ten-scenes) ·
-[🧠 Format families](#-format-families) ·
+[📚 Curated scenes](#-layer-1--curated-scenes) ·
+[🗃 Imported library](#-layer-2--imported-library) ·
 [🔁 Translator](#-cross-model-translation) ·
 [✅ Validator](#-validate-before-you-spend-credits) ·
-[🤝 Contribute](#-contributing)
+[📜 Attribution](#-attribution)
 
 </div>
 
@@ -42,66 +42,67 @@ want the same thing**:
 - Sora 2's layered structure was excellent — and the API was shut down on
   **24 September 2026**, so half the tutorials online are already dead.
 
-This repo holds **one scene per file**, with a **natively written prompt for
-every model**, side by side. You can diff exactly how the same shot is
-requested in nine different dialects. Then a small CLI does the mechanical part
-of moving between them.
+This repo answers that in two ways:
 
-> **No API keys. No accounts. No build step for the library. `node >= 18`.**
+**Layer 1 — curated.** One scene per file, with a natively written prompt for
+every model, side by side. Diff the same shot across nine dialects.
+
+**Layer 2 — imported.** 655 prompts pulled from three MIT-licensed open-source
+collections, each keeping its source, license, original credit, and the
+upstream collection's own confidence tier. Nothing is re-graded or laundered.
+
+> **No API keys. No accounts. No build step to consume the data. `node >= 18`.**
 
 ---
 
 ## 🚀 Quick start
 
-### Read the library
-
 ```bash
 git clone https://github.com/manallen/awesome-ai-video-prompts.git
 cd awesome-ai-video-prompts
 
-node bin/cli.mjs list                       # 10 scenes
-node bin/cli.mjs list --models              # + per-model coverage
+# Curated layer
+node bin/cli.mjs list --models
 node bin/cli.mjs show scene-10-wuxia-duel --model kling-3.0
-node bin/cli.mjs search "rain portrait"     # keyword search
-node bin/cli.mjs models                     # capability registry
+node bin/cli.mjs search "rain portrait"
+
+# Imported layer
+node bin/cli.mjs library                      # sources, families, confidence tiers
+node bin/cli.mjs find "rain neon" --limit 5
+node bin/cli.mjs find "product" --family kling
+node bin/cli.mjs get "lanshu-video-kit::sd-001"
+node bin/cli.mjs credits --source zerolu-seedance
+
+# Site
+npm run build:site && npm run site            # → http://127.0.0.1:8080
 ```
 
-### Preview the browser
-
-```bash
-npm run build:site && npm run site
-# → http://127.0.0.1:8080
-```
-
-### Use it as a library
+As a library:
 
 ```js
-import { search, promptFor, translate, validate } from "awesome-ai-video-prompts";
+import {
+  search, promptFor, translate, validate,      // curated layer
+  searchLibrary, libraryRecord, libraryIndex,  // imported layer
+} from "awesome-ai-video-prompts";
 
-// 1. Find the scene closest to what you're making
-const [best] = search("chrome liquid abstract");
-best.scene.id;                    // "scene-09-abstract-liquid"
+search("chrome liquid abstract")[0].scene.id;          // "scene-09-abstract-liquid"
+promptFor("scene-09-abstract-liquid", "kling-3.0");
 
-// 2. Get the prompt in the dialect you're generating with
-promptFor("scene-09-abstract-liquid", "kling-3.0").prompt;
+searchLibrary("wong kar-wai", { family: "seedance" });
+libraryRecord("lanshu-video-kit::sd-001").upstreamCredit;
 
-// 3. Port a prompt you already have
 translate({ prompt: mySoraPrompt, from: "sora-2", to: "veo-3.1" });
-
-// 4. Lint before spending credits
 validate(myPrompt, "kling-3.0");
-// → { ok: true, score: 92, words: 118, issues: [...] }
 ```
 
-No install required if you clone — the package has **zero runtime
-dependencies**.
+Zero runtime dependencies.
 
 ---
 
-## 📚 The ten scenes
+## 📚 Layer 1 — Curated scenes
 
-Ten deliberately different problems. Each one is a file in
-[`prompts/scenes/`](prompts/scenes) with all nine model prompts, the shared
+Ten deliberately different problems. Each file in
+[`prompts/scenes/`](prompts/scenes) holds all nine model prompts, the shared
 "anchor" (subject, scene, motion, mood, camera, audio, light), and an authoring
 note per model explaining what that model needs.
 
@@ -118,43 +119,11 @@ note per model explaining what that model needs.
 | 09 | [Liquid chrome](prompts/scenes/scene-09-abstract-liquid.json) | abstract | Surface tension, return-to-pool | Ending the shot instead of freezing |
 | 10 | [Wuxia duel](prompts/scenes/scene-10-wuxia-duel.json) | wuxia | Chinese semantics, grounded physics | Forbidding wire work that models love to add |
 
-### What a scene file looks like
+The `anchor` is the invariant. Every per-model prompt renders the same seven
+facts, so a diff between two models shows *only* what changed in the dialect —
+not what changed in the idea.
 
-```jsonc
-{
-  "id": "scene-10-wuxia-duel",
-  "title": "Wuxia — two swordfighters in a bamboo forest, one exchange",
-  "category": "wuxia",
-  "useCase": "Period drama teaser, game cinematic, Chinese-language short",
-  "anchor": {
-    "subject": "Two robed swordsmen facing each other in rain",
-    "scene":   "A dense bamboo forest, pale mist, wet leaves",
-    "motion":  "One rushes, they exchange blades once, both hold a still beat",
-    "mood":    "Restrained, tense, classical",
-    "camera":  "Wide locked-off first, then a fast push in on the clash",
-    "audio":   "Bamboo creak, rain, a single blade ring",
-    "light":   "Flat overcast light with mist layers between the trunks"
-  },
-  "prompts": {
-    "kling-3.0": {
-      "prompt": "Scene: …\nCharacters: …\nAction: …\nCamera: …\nAudio & Style: …\nNegative: …",
-      "notes": "Kling's Chinese semantic strength makes this the strongest option for wuxia when Negative is explicit."
-    }
-    // …eight more models
-  }
-}
-```
-
-The `anchor` is the invariant. Every per-model prompt is a rendering of the
-same seven facts, so a diff between two models tells you *only* what changed in
-the dialect — not what changed in the idea.
-
----
-
-## 🧠 Format families
-
-Nine models, five genuinely different prompt shapes. This is the table to
-internalise.
+### Format families
 
 | Family | Models | Shape | Failure if you get it wrong |
 |--------|--------|-------|------------------------------|
@@ -169,51 +138,123 @@ internalise.
 
 ⏹ = retired. Sora 2 and the OpenAI Videos API were shut down on **2026-09-24**
 with [no one-to-one replacement](https://developers.openai.com/api/docs/guides/video-generation).
-The prompts are kept as historical reference — `aivp translate sora-2 veo-3.1`
+Those prompts are kept as historical reference — `aivp translate sora-2 veo-3.1`
 migrates them.
 
 ### Capability registry
 
 [`prompts/models.json`](prompts/models.json) holds the machine-readable facts
-behind the table above: durations, resolutions, aspect ratios, whether native
-audio exists, which labels the model expects, and the vendor doc URL for each
-claim. Every entry is date-stamped.
+behind that table: durations, resolutions, aspect ratios, native audio, expected
+labels, and the vendor doc URL for each claim. Every entry is date-stamped.
+
+---
+
+## 🗃 Layer 2 — Imported library
+
+655 prompts from three MIT-licensed collections, normalized into one schema
+without losing provenance.
 
 ```bash
-node bin/cli.mjs models --active
-# seedance-2.0    active    prose-8e        audio   Seedance 2.0
-# kling-3.0       active    labeled-blocks  audio   Kling 3.0
-# veo-3.1         active    prose-audio     audio   Veo 3.1
-# wan-2.7         active    four-block      audio   Wan 2.7
-# hailuo-02       active    terse-prose     audio   MiniMax Hailuo / H3
-# gemini-omni     active    instruction     audio   Gemini Omni Flash 1.1
-# runway-gen4.5   active    prose-edit      silent  Runway Gen-4.5 / Aleph 2.0
-# happyhorse-1.0  active    compact-prose   audio   HappyHorse 1.0
+$ aivp library
+Imported corpus: 655 records from 3 sources (26 rejected at import)
+
+Sources:
+  lanshu-video-kit      584  MIT      https://github.com/cclank/lanshu-awesome-ai-video-kit
+  zerolu-seedance        24  MIT      https://github.com/ZeroLu/awesome-seedance
+  awesome-sora2-prompt   47  MIT      https://github.com/zhangchenchen/awesome_sora2_prompt
+
+By model family:
+  seedance  155   happyhorse  100   sora  83   kling  82   veo  40
+  minimax    38   runway       24   wan   23   hunyuan 22  jimeng 22
+  pika       22   gemini-omni   9   higgsfield 9  cogvideox 8 …
 ```
+
+### What every imported record carries
+
+| Field | Meaning |
+|---|---|
+| `sourceId` / `sourceUrl` | Which collection, exactly |
+| `license` | That collection's license |
+| `upstreamId` | The record's id inside the upstream collection |
+| `upstreamCredit` / `upstreamUrl` | The original author or platform the collection credits |
+| `upstreamTier` | The collection's own confidence label, **preserved verbatim** |
+| `model` | Upstream model string, verbatim |
+| `modelFamily` / `modelVariant` | Derived, alongside — never instead of |
+| `kind` | `prompt` (a scene prompt) vs `snippet` (an instruction fragment) |
+
+Confidence tiers seen in the data:
+
+| Tier | Count | Meaning |
+|---|---:|---|
+| `reputable-3rd-party` | 473 | Curated third-party blogs and review sites |
+| `official` | 131 | Vendor-owned domains |
+| `official-platform` | 41 | Official GitHub / HuggingFace / Replicate |
+| `unverified-3rd-party` | 9 | Kept, labeled, not endorsed |
+| `unknown` | 1 | No URL |
+
+We do not upgrade anyone's tier. An `unverified-3rd-party` prompt stays labeled
+that way here.
+
+### Import pipeline
+
+```text
+data/snapshots/      ← committed upstream bytes (git-cloneable, offline-reproducible)
+        │
+        ├─ scripts/importers/sources.mjs     license gate + source registry
+        ├─ scripts/importers/markdown.mjs    heading/fence/CJK-label extraction
+        ├─ scripts/importers/families.mjs    model → family/variant, non-destructive
+        │
+        ▼
+scripts/import-library.mjs                   gate, dedupe, normalize
+        ▼
+prompts/library.json        (655 records, provenance intact)
+prompts/library-report.json (26 rejections, each with a reason)
+```
+
+The importer refuses a source whose license is not MIT, Apache-2.0, CC0-1.0 or
+CC BY 4.0, and refuses records with unresolved placeholders, raw HTML, URL-only
+bodies, or duplicate text. Rejections are counted and written to the report —
+**nothing is dropped silently**.
+
+```bash
+npm run build:library       # rebuild from committed snapshots (no network)
+npm run refresh:library     # re-download snapshots from upstream, then rebuild
+```
+
+Builds are deterministic: `npm run build` twice produces byte-identical output,
+which is why CI can assert the committed artifacts are current.
+
+### Collections considered and not imported
+
+| Collection | Reason |
+|---|---|
+| `songguoxs/awesome-video-prompts` | No license file |
+| `gpt-image2/awesome-gptimage2-prompts` | No license file |
+| `itgoyo/awesome-gpt-image2-prompt` | No license file |
+| `Anil-matcha/Awesome-GPT-Image-2-API-Prompts` | No license file, near-empty repo |
+| `YouMind-OpenLab/awesome-gpt-image-2` | CC BY, but image-only — out of scope for a video library |
+| `freestylefly/awesome-gpt-image-2` | MIT, but image-only — out of scope |
+
+Full reasoning in [ATTRIBUTION.md](ATTRIBUTION.md). If you maintain an
+MIT/Apache/CC0 video prompt collection, open an issue — adding a source is a
+registry entry plus a snapshot.
 
 ---
 
 ## 🔁 Cross-model translation
 
 ```bash
-# Sora 2 → Kling 3.0 (labeled → labeled: fully deterministic)
-aivp translate sora-2 kling-3.0 ./my-prompt.txt
-
-# Sora 2 → Wan 2.7 (labeled → four-block)
-aivp translate sora-2 wan-2.7 ./my-prompt.txt
-
-# Sora 2 → Veo 3.1 (adds explicit Dialogue/Audio suppression)
-aivp translate sora-2 veo-3.1 ./my-prompt.txt
-
-# From stdin, JSON output
+aivp translate sora-2 kling-3.0 ./my-prompt.txt   # labeled → labeled: deterministic
+aivp translate sora-2 wan-2.7  ./my-prompt.txt    # labeled → four-block
+aivp translate sora-2 veo-3.1  ./my-prompt.txt    # adds explicit Dialogue/Audio
 cat prompt.txt | aivp translate kling-3.0 seedance-2.0 --json
 ```
 
 **Scope, stated honestly.** The translator is *structural*, not semantic:
 
 - Labeled → labeled is deterministic. The labels carry the meaning.
-- Prose source → **returned unchanged with a warning**. There is no rule that
-  maps a paragraph onto `Characters:`/`Action:`/`Camera:`. Guessing produces
+- Prose source → **returned unchanged with a warning**. No rule maps a
+  paragraph onto `Characters:`/`Action:`/`Camera:`; guessing produces
   confident-looking garbage.
 - Missing fields are **omitted and reported**, never invented.
 
@@ -226,9 +267,9 @@ Sound: Fridge hum, a dish settling in the sink
 # Source prompt supplied no Entity, Scene. The target block is omitted rather than invented — fill it in before generating.
 ```
 
-If you want semantic rewriting, [docs/PROMPT-TRANSLATION.md](docs/PROMPT-TRANSLATION.md)
+For semantic rewriting, [docs/PROMPT-TRANSLATION.md](docs/PROMPT-TRANSLATION.md)
 gives the exact LLM prompt — including the "return null, then list every null"
-clause that stops the model from filling gaps with invention.
+clause that stops the model filling gaps with invention.
 
 ---
 
@@ -246,8 +287,6 @@ score 37  words 44  FAIL
   WARNING no-preservation: Image-to-video prompts should state what must stay unchanged.
 ```
 
-Rules that are checked:
-
 | Check | Catches |
 |-------|---------|
 | `placeholder` | `[BRAND NAME]`, `<CITY>`, `{CHARACTER}` leaking from templates |
@@ -261,10 +300,8 @@ Rules that are checked:
 | `retired` | Generating against a model that no longer exists |
 
 ```bash
-aivp validate --all          # the whole library, as a CI gate
+aivp validate --all     # the curated library, as a CI gate (0 errors, 0 warnings)
 ```
-
-The entire 90-prompt library passes with **0 errors, 0 warnings**.
 
 ---
 
@@ -273,76 +310,91 @@ The entire 90-prompt library passes with **0 errors, 0 warnings**.
 ```text
 awesome-ai-video-prompts/
 ├── prompts/
-│   ├── models.json          # capability registry (date-stamped, cited)
-│   ├── generated.json       # built aggregate — do not edit by hand
-│   └── scenes/              # ← the source of truth
-│       ├── scene-01-product-hero.json
-│       └── … scene-10-wuxia-duel.json
+│   ├── models.json            # capability registry (date-stamped, cited)
+│   ├── generated.json         # curated aggregate — built, do not hand-edit
+│   ├── library.json           # imported corpus with provenance — built
+│   ├── library-report.json    # importer rejections with reasons — built
+│   └── scenes/                # ← curated source of truth
+├── data/snapshots/            # ← committed upstream bytes (import inputs)
 ├── src/
-│   ├── models.mjs           # registry loading
-│   ├── search.mjs           # BM25-lite scorer, no index
-│   ├── translate.mjs        # labeled ↔ four-block ↔ prose renderers
-│   ├── validate.mjs         # the lint rules above
-│   └── index.mjs            # public API
-├── bin/
-│   ├── cli.mjs              # aivp
-│   └── help.txt
+│   ├── models.mjs             # registry loading
+│   ├── search.mjs             # BM25-lite scorer for curated scenes
+│   ├── library.mjs            # imported-corpus search + attribution
+│   ├── translate.mjs          # labeled ↔ four-block ↔ prose renderers
+│   ├── validate.mjs           # the lint rules
+│   └── index.mjs              # public API
 ├── scripts/
-│   ├── build-data.mjs       # scenes/ → generated.json, fails on inconsistency
-│   ├── build-site.mjs       # → site/index.html
-│   └── serve-site.mjs       # local preview
-├── site/index.html          # GitHub Pages (static, no framework)
-├── docs/
-│   └── PROMPT-TRANSLATION.md
-└── test/library.test.mjs    # 17 tests
+│   ├── import-library.mjs     # snapshots → library.json
+│   ├── importers/             # sources, markdown, families
+│   ├── build-data.mjs         # scenes/ → generated.json
+│   ├── build-site.mjs         # → site/index.html
+│   └── serve-site.mjs         # local preview
+├── bin/cli.mjs                # aivp
+├── site/index.html            # GitHub Pages (static, no framework)
+├── docs/PROMPT-TRANSLATION.md
+├── ATTRIBUTION.md
+└── test/                      # 37 tests
 ```
+
+---
+
+## 📜 Attribution
+
+Curated scenes are original work under the repository's [MIT license](LICENSE).
+Imported prompts retain their upstream license and attribution; every record
+names its source, and `upstreamCredit` names the author the upstream collection
+itself credited.
+
+```bash
+aivp credits                      # every source + credit line
+aivp credits --source zerolu-seedance
+```
+
+Full detail, including the removal process for upstream authors, is in
+[ATTRIBUTION.md](ATTRIBUTION.md).
 
 ---
 
 ## 🤝 Contributing
 
-The highest-value contribution is a **scene**, not a style tweak.
+The highest-value contribution is a **curated scene**, not a style tweak.
 
 1. Copy an existing file in [`prompts/scenes/`](prompts/scenes).
 2. Write the `anchor` — seven facts, no model-specific language.
 3. Write a prompt **for every model**, in that model's own dialect. If you only
-   know one model, open an issue with the scene and we'll fill the rest.
-4. Add a `notes` line saying what you had to do differently for that model.
-   That note is often more useful than the prompt.
+   know one model, open an issue with the scene and we fill the rest.
+4. Add a `notes` line saying what you had to do differently. That note is often
+   more useful than the prompt.
 5. Run the gates:
 
 ```bash
-npm run build:data        # fails on unknown models / empty prompts
-npm test                  # 17 tests
+npm run build             # curated + imported + site
+npm test                  # 37 tests
 node bin/cli.mjs validate --all
 ```
 
-PRs that add a model to the registry need the vendor documentation URL in
-`sources`. Claims without a source get closed — this repo's whole value is that
-it is checkable.
+To propose a new **import source**, open an issue with the repository URL and a
+license link. Sources without a detectable compatible license are refused.
 
 ---
 
 ## 📌 Scope and limits
 
-**What this is:** a cross-model prompt *reference* and a *structural* prompt
-tool. Prompts are written from the vendors' documented formulas and general
-prompt-engineering practice. They are not benchmarked equivalence tests.
+**This is:** a cross-model prompt *reference* (curated), an *attributed corpus*
+(imported), and a *structural* prompt tool.
 
-**What this is not:**
-
-- A guarantee that a prompt produces a specific frame.
-- A list of "best" prompts in an aesthetic sense — the scenes are chosen to
-  stress *different* model behaviours.
-- A substitute for the vendor docs. Model behaviour shifts between releases;
-  [`prompts/models.json`](prompts/models.json) is date-stamped for exactly
-  that reason.
+**It is not:** a guarantee that a prompt produces a specific frame; an aesthetic
+"best of"; a substitute for vendor docs; an endorsement of every imported
+prompt. The imported corpus is deliberately heterogenous — that is the point of
+keeping `upstreamTier` visible.
 
 **Known gaps**, tracked as issues:
 
 - Kling's `Audio & Style` block is not split into sound vs. style.
 - Wan multi-shot timestamp syntax (`第1个镜头[0-3秒]`) is parsed as plain prose.
 - Seedance `@图像1` reference labels pass through verbatim, unvalidated.
+- Imported prompts are normalized for storage only — they are not run through
+  the validator, because many upstream prompts are intentionally minimal.
 
 ---
 
@@ -350,12 +402,13 @@ prompt-engineering practice. They are not benchmarked equivalence tests.
 
 | | |
 |---|---|
-| 🌐 Product | **[freecreate.app](https://freecreate.app)** — try these workflows in the browser |
+| 🌐 Browse | [manallen.github.io/awesome-ai-video-prompts](https://manallen.github.io/awesome-ai-video-prompts/) |
+| 🌐 Product | **[freecreate.app](https://freecreate.app)** — run these workflows in the browser |
 | 🎬 Video workspace | [freecreate.app/video](https://freecreate.app/video) · [image-to-video](https://freecreate.app/image-to-video-generator) · [motion control](https://freecreate.app/motion-control-ai) |
 | 🖼 Image tools | [freecreate.app/image-tools](https://freecreate.app/image-tools) |
 | 💡 Effects library | [freecreate.app/ai-effects](https://freecreate.app/ai-effects) |
 | 📖 Translation guide | [docs/PROMPT-TRANSLATION.md](docs/PROMPT-TRANSLATION.md) |
-| 🐛 Issues | [github.com/manallen/awesome-ai-video-prompts/issues](https://github.com/manallen/awesome-ai-video-prompts/issues) |
+| 📜 Attribution | [ATTRIBUTION.md](ATTRIBUTION.md) |
 
 ---
 

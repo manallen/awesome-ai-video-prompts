@@ -17,12 +17,25 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Build dataset
+      - name: Build curated dataset
         run: npm run build:data
-      - name: Fail if generated.json is stale
+      - name: Build imported library from committed snapshots
+        run: npm run build:library
+      - name: Fail if generated artifacts are stale
         run: |
-          git diff --exit-code prompts/generated.json \
-            || (echo "::error::prompts/generated.json is stale — run npm run build:data and commit the result" && exit 1)
+          git diff --exit-code prompts/generated.json prompts/library.json prompts/library-report.json \
+            || (echo "::error::generated artifacts are stale — run npm run build and commit the result" && exit 1)
+      - name: Refuse incompatible upstream licenses
+        run: |
+          node -e '
+            const lib = require("./prompts/library.json");
+            const allowed = new Set(["MIT","Apache-2.0","CC0-1.0","CC BY 4.0"]);
+            const bad = lib.sources.filter((s) => !allowed.has(s.license));
+            if (bad.length) {
+              console.error("::error::Non-importable license(s): " + bad.map((s) => s.id + "=" + s.license).join(", "));
+              process.exit(1);
+            }
+          '
       - name: Lint the library
         run: node bin/cli.mjs validate --all
       - name: Test

@@ -10,12 +10,24 @@
  *   aivp validate <model> <file>       Lint one prompt against a model profile
  *   aivp validate --all                Lint every prompt in the library
  *   aivp export [--format json|md]     Emit the whole dataset
+ *
+ *   aivp library [--family X]          Stats for the imported third-party corpus
+ *   aivp find <query> [--family X]     Search 600+ imported prompts
+ *   aivp get <record-id>               Print one imported record in full
+ *   aivp credits [--source X]          Attribution lines for imported records
  */
 import { readFileSync } from "node:fs";
 import { loadModels, loadScenes } from "../src/models.mjs";
 import { searchScenes } from "../src/search.mjs";
 import { translate } from "../src/translate.mjs";
 import { validatePrompt, validateAll } from "../src/validate.mjs";
+import {
+  loadLibrary,
+  libraryIndex,
+  searchLibrary,
+  libraryRecord,
+  attributionLines,
+} from "../src/library.mjs";
 
 const argv = process.argv.slice(2);
 const command = argv[0];
@@ -32,7 +44,10 @@ function has(name) {
 }
 
 /** Positional args with every `--flag value` pair removed. */
-const VALUE_FLAGS = new Set(["model", "limit", "category", "format", "kind", "out"]);
+const VALUE_FLAGS = new Set([
+  "model", "limit", "category", "format", "kind", "out",
+  "family", "source", "language", "tier",
+]);
 function positionals() {
   const out = [];
   for (let i = 0; i < argv.length; i += 1) {
@@ -188,6 +203,103 @@ const COMMANDS = {
       return;
     }
     json({ models, scenes });
+  },
+
+  library() {
+    const index = libraryIndex();
+    if (has("json")) {
+      json(index);
+      return;
+    }
+    process.stdout.write(
+      `Imported corpus: ${index.counts.records} records from ${index.sources.length} sources ` +
+        `(${index.counts.rejected} rejected at import)\n\n`,
+    );
+    process.stdout.write("Sources:\n");
+    for (const source of index.sources) {
+      process.stdout.write(
+        `  ${source.id.padEnd(20)} ${String(index.bySource[source.id] ?? 0).padStart(4)}  ` +
+          `${source.license.padEnd(8)} ${source.repositoryUrl}\n`,
+      );
+    }
+    process.stdout.write("\nBy model family:\n");
+    for (const [family, count] of Object.entries(index.byFamily).sort((a, b) => b[1] - a[1])) {
+      process.stdout.write(`  ${family.padEnd(16)} ${String(count).padStart(4)}\n`);
+    }
+    process.stdout.write("\nBy upstream confidence tier:\n");
+    for (const [tier, count] of Object.entries(index.byTier).sort((a, b) => b[1] - a[1])) {
+      process.stdout.write(`  ${tier.padEnd(24)} ${String(count).padStart(4)}\n`);
+    }
+    process.stdout.write("\nBy record kind:\n");
+    for (const [kind, count] of Object.entries(index.byKind).sort((a, b) => b[1] - a[1])) {
+      process.stdout.write(`  ${kind.padEnd(16)} ${String(count).padStart(4)}\n`);
+    }
+  },
+
+  find() {
+    const query = positionals().join(" ");
+    if (!query) throw new Error("Usage: aivp find <query> [--family X] [--source Y] [--kind prompt|snippet] [--limit N]");
+    const results = searchLibrary(query, {
+      limit: Number(flag("limit", 10)),
+      family: flag("family"),
+      source: flag("source"),
+      kind: flag("kind"),
+      language: flag("language"),
+      tier: flag("tier"),
+    });
+    if (has("json")) {
+      json(results.map(({ record, score }) => ({ id: record.id, title: record.title, model: record.model, score })));
+      return;
+    }
+    if (results.length === 0) {
+      process.stdout.write("No matches.\n");
+      return;
+    }
+    for (const { record, score } of results) {
+      process.stdout.write(
+        `${String(score).padStart(5)}  ${record.model.padEnd(18)} ${record.sourceId.padEnd(20)} ${record.title}\n`,
+      );
+      process.stdout.write(`${" ".repeat(7)}${record.id}\n`);
+    }
+  },
+
+  get() {
+    const [id] = positionals();
+    if (!id) throw new Error("Usage: aivp get <record-id>   (ids look like 'lanshu-video-kit::sd-001')");
+    const record = libraryRecord(id);
+    if (has("json")) {
+      json(record);
+      return;
+    }
+    process.stdout.write(`${record.title}\n`);
+    process.stdout.write(
+      `model: ${record.model} (${record.modelFamily}${record.modelVariant ? " " + record.modelVariant : ""})  ` +
+        `kind: ${record.kind}  lang: ${record.language}\n`,
+    );
+    process.stdout.write(`source: ${record.sourceName} — ${record.sourceUrl}\n`);
+    process.stdout.write(`license: ${record.license}  tier: ${record.upstreamTier}\n`);
+    if (record.upstreamCredit) process.stdout.write(`credit: ${record.upstreamCredit}\n`);
+    if (record.upstreamUrl) process.stdout.write(`upstream: ${record.upstreamUrl}\n`);
+    process.stdout.write("\n");
+    process.stdout.write(`${record.prompt.trim()}\n`);
+    if (record.notes) process.stdout.write(`\n# ${record.notes}\n`);
+  },
+
+  credits() {
+    const sourceFilter = flag("source");
+    const library = loadLibrary();
+    const records = sourceFilter
+      ? library.prompts.filter((r) => r.sourceId === sourceFilter)
+      : library.prompts;
+    const lines = attributionLines(records);
+    for (const line of lines) {
+      process.stdout.write(
+        `${line.sourceId}: ${line.attribution} (${line.license}) ${line.sourceUrl}\n` +
+          (line.upstreamCredit
+            ? `  └─ ${line.upstreamCredit}${line.upstreamUrl ? ` — ${line.upstreamUrl}` : ""} [${line.upstreamTier}]\n`
+            : ""),
+      );
+    }
   },
 
   help() {

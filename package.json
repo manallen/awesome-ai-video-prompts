@@ -14,19 +14,22 @@
   },
   "keywords": [
     "ai-video",
-    "prompt-engineering",
-    "text-to-video",
-    "image-to-video",
-    "seedance",
-    "kling",
-    "veo",
-    "wan",
-    "hailuo",
-    "sora",
-    "runway",
-    "gemini-omni",
+    "attribution",
     "awesome-list",
-    "llm"
+    "dataset",
+    "gemini-omni",
+    "hailuo",
+    "image-to-video",
+    "kling",
+    "llm",
+    "prompt-engineering",
+    "prompt-library",
+    "runway",
+    "seedance",
+    "sora",
+    "text-to-video",
+    "veo",
+    "wan"
   ],
   "bin": {
     "aivp": "./bin/cli.mjs"
@@ -34,6 +37,7 @@
   "exports": {
     ".": "./src/index.mjs",
     "./prompts": "./prompts/generated.json",
+    "./library": "./prompts/library.json",
     "./models": "./prompts/models.json"
   },
   "files": [
@@ -50,9 +54,11 @@
   "scripts": {
     "build:data": "node scripts/build-data.mjs",
     "test": "node --test test/*.test.mjs",
-    "lint:data": "node bin/cli.mjs validate --all",
+    "lint:data": "node bin/cli.mjs validate --all && node bin/cli.mjs library",
     "site": "node scripts/serve-site.mjs",
-    "build": "node scripts/build-data.mjs",
-    "build:site": "node scripts/build-site.mjs"
+    "build": "node scripts/build-data.mjs && node scripts/import-library.mjs && node scripts/build-site.mjs",
+    "build:site": "node scripts/build-site.mjs",
+    "build:library": "node scripts/import-library.mjs",
+    "refresh:library": "node scripts/import-library.mjs --refresh"
   }
 }
