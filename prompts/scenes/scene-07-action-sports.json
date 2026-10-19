@@ -1,0 +1,54 @@
+{
+  "id": "scene-07-action-sports",
+  "title": "Action — skateboard kickflip at a drained pool",
+  "category": "action-sports",
+  "useCase": "Sports content, brand campaign, energetic social cut",
+  "difficulty": "intermediate",
+  "anchor": {
+    "subject": "A skater in a mustard hoodie and black cap",
+    "scene": "A drained concrete pool at golden hour, graffiti on the far wall",
+    "motion": "Approach, pop, kickflip, land, ride out",
+    "mood": "Fast, loose, sun-baked",
+    "camera": "Low tracking shot at deck height that follows the board through the flip",
+    "audio": "Wheels on concrete, the pop, a skateboard land, wind",
+    "light": "Hard low golden-hour sun from camera-right, long shadows"
+  },
+  "prompts": {
+    "seedance-2.0": {
+      "prompt": "A skater in a mustard hoodie and black cap rides toward the lip of a drained concrete pool at golden hour. He crouches, pops the tail, and the board rotates a full kickflip beneath him; his feet catch the grip tape and he lands clean, bending his knees to absorb before rolling away along the curved wall. Graffiti covers the far wall, and hard low sun from camera-right throws long shadows across the concrete. A low tracking camera at deck height follows the board through the flip and holds with him as he rides out. Warm golden grade, realistic wheel-on-concrete physics, natural body mechanics. Keep the hoodie and cap the same colour throughout, no duplicated skaters, no slow motion.",
+      "notes": "Give the jump a four-beat structure: approach, pop, flip, land. Models drop the flip without the pop."
+    },
+    "kling-3.0": {
+      "prompt": "Scene: A drained concrete pool at golden hour, graffiti on the far wall, hard low sun from camera-right throwing long shadows.\nCharacters: A skater in a mustard hoodie and black cap, one person only.\nAction: He approaches the pool lip, crouches, pops the tail, the board rotates a full kickflip, his feet catch the grip tape, he lands with bent knees and rides out along the curved wall.\nCamera: Low tracking shot at deck height following the board through the flip and holding the ride-out.\nAudio & Style: Wheels on concrete, a sharp pop, a solid landing, wind. Warm golden grade, realistic skate physics.\nNegative: no slow motion, no duplicated skaters, no cut to another angle, no floaty gravity, no hoodie colour change, no text.",
+      "notes": "Forbid cuts. Kling tends to insert an angle change mid-action to hide physics errors."
+    },
+    "veo-3.1": {
+      "prompt": "A skater in a mustard hoodie and black cap rides toward the lip of a drained concrete pool at golden hour. He crouches, pops the tail, and the board rotates a full kickflip beneath him; his feet catch the grip tape, he lands with bent knees and rides out along the curved wall. Graffiti covers the far wall, hard low sun from camera-right throws long shadows. Low tracking camera at deck height following the board through the flip and holding the ride-out. Warm golden grade, realistic wheel-on-concrete physics.\n\nDialogue: none.\nAudio: wheels rolling on concrete, a sharp tail pop, a solid landing, light wind. No music.",
+      "notes": "Veo's physics is strong here; the failure mode is an extra flip, so state 'a full kickflip' and 'one rotation'."
+    },
+    "wan-2.7": {
+      "prompt": "Entity: A skater in a mustard hoodie and black cap, one person only.\nScene: A drained concrete pool at golden hour, graffiti on the far wall, hard low sun from camera-right, long shadows.\nMotion: He approaches the lip, crouches, pops the tail, the board rotates a single full kickflip, his feet catch the grip and he lands with bent knees and rides out. Low tracking camera at deck height, no cuts.\nSound: Wheels on concrete, a sharp pop, a solid landing, light wind, no music.",
+      "notes": "One camera verb. Do not add 'then he turns to camera' — it breaks the ride-out continuity."
+    },
+    "hailuo-02": {
+      "prompt": "A skater in a mustard hoodie pops a single clean kickflip at the lip of a drained concrete pool at golden hour, feet catching the grip tape, knees absorbing the landing, riding out along the curved wall. Graffiti on the far wall, hard low sun from camera-right, long shadows. Low tracking camera at deck height, realistic gravity and wheel grip.",
+      "notes": "Hailuo is the strongest for physical action here. Two sentences, emphasise gravity and grip."
+    },
+    "gemini-omni": {
+      "prompt": "Create an 8-second skate clip: a skater in a mustard hoodie and black cap approaches the lip of a drained concrete pool at golden hour, pops a single kickflip, catches the board, lands with bent knees, and rides out along the wall. Graffiti far wall, hard low sun from camera-right, long shadows. Low tracking camera at deck height, no cuts, no slow motion. Realistic physics. Audio: wheels on concrete, a sharp pop, a solid landing, light wind.",
+      "notes": "Iterate: 'keep the ride-out but make the flip land half a second earlier.'"
+    },
+    "runway-gen4.5": {
+      "prompt": "Low tracking shot at deck height: a skater in a mustard hoodie and black cap rides toward the lip of a drained concrete pool at golden hour, pops a single kickflip, lands with bent knees and rides out along the curved wall. Graffiti on the far wall, hard low sun from camera-right, long shadows. 24mm equivalent, tight follow, warm golden grade, realistic skate physics, no cuts.",
+      "notes": "Aleph variant: 'remove the graffiti and re-light to overcast, keep the trick identical.'"
+    },
+    "happyhorse-1.0": {
+      "prompt": "8s duration. A skater in a mustard hoodie pops one kickflip at a drained pool lip, catches the board, lands with bent knees and rides out, golden hour from camera-right, low deck-height tracking camera, wheels and landing audible.",
+      "notes": "Four beats in 40 words. Name the audio explicitly or the clip ships silent."
+    },
+    "sora-2": {
+      "prompt": "Style: Sun-baked golden-hour skate film, warm grade, natural grain, realistic physics.\nCinematography: Low tracking shot at deck height, 24mm equivalent, tight follow through the flip, no cuts.\nActions: - He rides toward the pool lip.\n- He crouches and pops the tail.\n- The board rotates a single full kickflip beneath him.\n- His feet catch the grip tape and he lands with bent knees.\n- He rides out along the curved wall.\nBackground Sound: Wheels on concrete, a sharp tail pop, a solid landing, light wind.\nDialogue: none.",
+      "notes": "Legacy. Translate to veo-3.1."
+    }
+  }
+}

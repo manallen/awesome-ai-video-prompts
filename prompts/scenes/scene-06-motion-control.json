@@ -1,0 +1,55 @@
+{
+  "id": "scene-06-motion-control",
+  "title": "Motion control — transferring a dance move onto a new character",
+  "category": "motion-control",
+  "useCase": "Character swap, dance trends, character consistency in campaigns",
+  "difficulty": "advanced",
+  "input": "One character image + one reference motion video",
+  "anchor": {
+    "subject": "The character from the supplied image, unchanged in costume and identity",
+    "scene": "A bare studio with a seamless mid-grey backdrop",
+    "motion": "Exact choreography from the reference clip, retargeted onto the new character",
+    "mood": "Playful, energetic",
+    "camera": "Matches the reference clip's framing",
+    "audio": "Original reference clip audio, no added music",
+    "light": "Soft two-point studio light"
+  },
+  "prompts": {
+    "seedance-2.0": {
+      "prompt": "Reference video 1 for the exact body motion, timing and camera framing. Reference image 1 for the character identity: keep the face, hairstyle, costume and body proportions exactly as in image 1. Retarget the full choreography from video 1 onto this character, preserving the rhythm, weight shifts and arm paths frame by frame. Place the character in a bare studio with a seamless mid-grey backdrop under soft two-point lighting. The camera matches the reference clip's framing and does not add new moves. Keep the character's silhouette consistent, no costume changes, no face drift, no additional dancers in frame.",
+      "notes": "Seedance 2.0 accepts video + image references. Label them explicitly as 'Reference video 1' and 'Reference image 1'."
+    },
+    "kling-3.0": {
+      "prompt": "Scene: A bare studio with a seamless mid-grey backdrop, soft two-point lighting.\nCharacters: The character from the supplied image, identical face, hairstyle, costume and proportions.\nAction: Reproduce the full choreography from the reference clip exactly — timing, weight shifts and arm paths — retargeted onto this character. Do not add or improvise steps.\nCamera: Match the reference clip's framing and lens; no extra moves.\nAudio & Style: Use the reference clip audio as-is. Keep studio realism and consistent character silhouette.\nNegative: no face drift, no costume change, no extra dancers, no added moves, no camera shake, no background change.",
+      "notes": "Kling 3.0's motion control is strongest when the reference clip is under 10 s and the framing is medium or wider."
+    },
+    "veo-3.1": {
+      "prompt": "Use the supplied character image for identity and the supplied motion reference for choreography. Keep the character's face, hairstyle, costume and body proportions exactly as in the image; reproduce the reference clip's body motion, timing and camera framing without adding new moves. Studio setting with a seamless mid-grey backdrop and soft two-point lighting. Match the reference clip's lens and framing. Do not alter the costume silhouette, do not add dancers, do not let the face drift.\n\nDialogue: none.\nAudio: keep the reference clip's original audio; do not add music.",
+      "notes": "Veo needs both assets passed as references; if you can only pass one, choose the motion clip and describe identity in the prompt."
+    },
+    "wan-2.7": {
+      "prompt": "Entity: The character from the supplied image, with identical face, hairstyle, costume and body proportions.\nScene: A bare studio with a seamless mid-grey backdrop and soft two-point lighting.\nMotion: Reproduce the choreography from the reference video exactly — timing, weight shifts, arm paths and final pose — retargeted onto this character. Match the reference camera framing without adding new moves.\nSound: Keep the reference clip audio, no added music.",
+      "notes": "Wan 2.7 also exposes a motion-retargeting path; for precise limb transfer prefer it over pure prompt guidance."
+    },
+    "hailuo-02": {
+      "prompt": "The supplied character performs the reference clip's dance exactly — same rhythm, same arm paths, same final pose — on a seamless mid-grey studio backdrop with soft two-point light. Keep the costume and face unchanged and match the reference framing, no added steps.",
+      "notes": "Best for short, high-energy loops. Hailuo keeps limb physics coherent when the reference is under 8 s."
+    },
+    "gemini-omni": {
+      "prompt": "Take the choreography from the reference clip and apply it to the character in the supplied image. Keep the face, hairstyle and costume identical. Studio with mid-grey backdrop, soft two-point lighting, framing matched to the reference. Do not add moves or dancers. Original clip audio only.",
+      "notes": "Good for a fast first pass; refine limbs in follow-up turns rather than regenerating."
+    },
+    "runway-gen4.5": {
+      "prompt": "Act-Two: transfer the performance from the reference clip onto the character in the supplied image. Match the body motion, timing, and camera framing exactly. Seamless mid-grey studio backdrop, soft two-point lighting. Preserve costume and identity, no added moves, no extra performers.",
+      "notes": "Runway Act-Two is the dedicated performance-transfer model in their stack."
+    },
+    "happyhorse-1.0": {
+      "prompt": "8s duration. The supplied character performs the reference clip's dance exactly, same rhythm and arm paths, mid-grey studio backdrop, soft two-point light, framing matched, costume unchanged, no added steps.",
+      "notes": "Compact. Keep the word 'exactly' — it materially improves motion fidelity on short clips."
+    },
+    "sora-2": {
+      "prompt": "Style: Studio realism, mid-grey seamless backdrop, soft two-point lighting.\nCinematography: Match the reference clip's framing and lens, no additional camera movement.\nActions: - The character reproduces the reference choreography beat for beat.\n- Weight shifts land on the same counts.\n- The final pose matches the reference.\nBackground Sound: Reference clip audio only.\nDialogue: none.",
+      "notes": "Legacy. Translate to kling-3.0 which has a dedicated motion-control surface."
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "id": "scene-10-wuxia-duel",
+  "title": "Wuxia — two swordfighters in a bamboo forest, one exchange",
+  "category": "wuxia",
+  "useCase": "Period drama teaser, game cinematic, Chinese-language short",
+  "difficulty": "advanced",
+  "anchor": {
+    "subject": "Two robed swordsmen facing each other in rain",
+    "scene": "A dense bamboo forest, pale mist, wet leaves",
+    "motion": "One rushes, they exchange blades once, both hold a still beat",
+    "mood": "Restrained, tense, classical",
+    "camera": "Wide locked-off first, then a fast push in on the clash",
+    "audio": "Bamboo creak, rain, a single blade ring",
+    "light": "Flat overcast light with mist layers between the trunks"
+  },
+  "prompts": {
+    "seedance-2.0": {
+      "prompt": "Two robed swordsmen face each other at a distance in a dense bamboo forest under flat overcast light, pale mist layered between the trunks and rain falling steadily. The swordsman on the left, in pale grey robes with sleeves bound at the wrist, rushes forward in three quick steps; the swordsman on the right, in deep indigo robes, turns his blade to meet the strike. Steel meets once with a clean ring, both hold their blades locked for a beat, then step back and return to a guard stance. Wet bamboo leaves tremble and rain streaks catch the light. The camera is locked off wide for the approach, then pushes in fast on the clash and settles. Classical wuxia realism, natural fabrics weighted by rain, no wire stunts, no acrobatics, no flying, no blood, no duplicated fighters, no subtitles.",
+      "notes": "Explicitly forbid wire work and flight; without it the model adds floating for anything labelled wuxia."
+    },
+    "kling-3.0": {
+      "prompt": "Scene: A dense bamboo forest in steady rain, flat overcast light, pale mist layered between trunks, wet leaves.\nCharacters: Two swordsmen — left in pale grey robes with sleeves bound at the wrist; right in deep indigo robes. Distinct faces, no duplicates.\nAction: The left swordsman rushes in three quick steps, the right turns his blade to meet the strike, steel rings once, both hold a locked beat, then step back to guard.\nCamera: Locked-off wide for the approach, then a fast push in on the clash, settling.\nAudio & Style: Bamboo creak, steady rain, one clean blade ring. Classical wuxia realism, rain-weighted fabric.\nNegative: no wire work, no flying, no acrobatics, no blood, no duplicated fighters, no subtitles, no watermark.",
+      "notes": "Kling's Chinese semantic strength makes this the strongest option for wuxia when Negative is explicit."
+    },
+    "veo-3.1": {
+      "prompt": "Two robed swordsmen face each other in a dense bamboo forest under flat overcast light, pale mist between the trunks and steady rain. The swordsman in pale grey robes rushes forward in three quick steps; the swordsman in deep indigo robes turns his blade to meet the strike. Steel meets once with a clean ring, both hold a locked beat, then step back to guard. Wet leaves tremble and rain streaks catch the light. Locked-off wide for the approach, then a fast push in on the clash that settles. Classical wuxia realism, rain-weighted fabric, grounded footwork.\n\nDialogue: none.\nAudio: bamboo creaking in the rain, steady rainfall, one clean blade ring. No music.",
+      "notes": "Veo adds a musical stab on the clash; 'no music' is essential for the classical feel."
+    },
+    "wan-2.7": {
+      "prompt": "Entity: Two swordsmen — pale grey robes with bound sleeves on the left, deep indigo robes on the right; distinct stable faces, no duplicates.\nScene: A dense bamboo forest in steady rain, flat overcast light, pale mist between trunks, wet leaves.\nMotion: The left swordsman rushes in three quick steps, the right turns his blade to meet the strike, steel rings once, both hold a locked beat, then step back to guard. Grounded footwork, no flight. Locked-off wide, then a fast push in, settling.\nSound: Bamboo creak, steady rain, one clean blade ring, no music.",
+      "notes": "Add 'grounded footwork' in Motion; Wan will otherwise lift the fighters during the clash."
+    },
+    "hailuo-02": {
+      "prompt": "Two robed swordsmen in a rain-soaked bamboo forest: one rushes in three steps, the other turns a blade to meet him, steel rings once, both lock for a beat and step back to guard. Wet robes hang heavy, mist sits between trunks, flat overcast light. Grounded footwork, no flight, locked-off wide into a fast push on the clash.",
+      "notes": "Hailuo's strength is the physical clash; keep the prompt under both fighters' worth of detail."
+    },
+    "gemini-omni": {
+      "prompt": "Create an 8-second wuxia exchange in a dense bamboo forest in steady rain. Two swordsmen in pale grey and deep indigo robes approach; the grey swordsman rushes in three steps and the indigo swordsman turns his blade to meet the strike. Steel rings once, they lock for a beat, then step back to guard. Flat overcast light, mist between trunks, grounded footwork, no flight, no wire work. Locked-off wide then a fast push in. Audio: rain, bamboo creak, one blade ring, no music.",
+      "notes": "Iterate: 'make the clash land half a beat later and hold the lock longer.'"
+    },
+    "runway-gen4.5": {
+      "prompt": "Wuxia exchange in a dense bamboo forest under steady rain: two robed swordsmen, pale grey on the left and deep indigo on the right, close the distance in three quick steps, blades meet once with a clean ring, both lock for a beat and step back to guard. Wet fabric weighted, mist between trunks, flat overcast light, grounded footwork. Locked-off wide then a fast push on the clash, 35mm, classical period realism, no flight.",
+      "notes": "Runway's camera ramp is useful for the push; do the blade ring in post."
+    },
+    "happyhorse-1.0": {
+      "prompt": "8s duration. Two robed swordsmen close in a bamboo forest in rain, blades meeting once with a clean ring, holding a locked beat then stepping back to guard, mist between trunks, grounded footwork, no flight, rain and bamboo creak audible.",
+      "notes": "39 words. Do not describe robes in detail — HappyHorse then spends the budget on costume instead of the clash."
+    },
+    "sora-2": {
+      "prompt": "Style: Classical wuxia realism, rain-weighted fabric, flat overcast light, mist layers, grounded footwork, no wire work.\nCinematography: Locked-off wide for the approach, then a fast push in on the clash that settles.\nActions: - The grey-robed swordsman rushes in three quick steps.\n- The indigo-robed swordsman turns his blade to meet the strike.\n- Steel meets once with a clean ring.\n- Both hold a locked beat.\n- They step back to guard.\nBackground Sound: Bamboo creak in rain, steady rainfall.\nDialogue: none.",
+      "notes": "Legacy. Translate to kling-3.0 for the strongest wuxia target."
+    }
+  }
+}

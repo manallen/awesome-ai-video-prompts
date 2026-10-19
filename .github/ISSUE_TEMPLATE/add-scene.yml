@@ -1,0 +1,70 @@
+name: Add a scene
+description: Propose a new scene (a set of prompts for all models)
+title: "scene: "
+labels: [scene]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The highest-value contribution is a scene, not a style tweak.
+        Partial scenes are welcome — write the models you actually use, we fill the rest.
+
+  - type: input
+    id: one-line
+    attributes:
+      label: One line
+      description: What is happening in the shot?
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why this scene
+      description: What model behaviour does it stress that the existing ten do not?
+    validations:
+      required: true
+
+  - type: textarea
+    id: anchor
+    attributes:
+      label: The anchor (seven facts)
+      value: |
+        Subject:
+        Scene:
+        Motion:
+        Mood:
+        Camera:
+        Audio:
+        Light:
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: models
+    attributes:
+      label: Models you can write natively
+      options:
+        - label: seedance-2.0
+        - label: kling-3.0
+        - label: veo-3.1
+        - label: wan-2.7
+        - label: hailuo-02
+        - label: gemini-omni
+        - label: runway-gen4.5
+        - label: happyhorse-1.0
+        - label: "sora-2 (archival only)"
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: The anchor contains no model-specific language
+          required: true
+        - label: Each prompt is written in that model's own structure (not copy-pasted)
+          required: true
+        - label: Each prompt has a notes line explaining what had to change
+          required: true
+        - label: "`npm run build:data && npm test && node bin/cli.mjs validate --all` passes"
+          required: true

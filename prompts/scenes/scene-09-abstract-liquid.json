@@ -1,0 +1,54 @@
+{
+  "id": "scene-09-abstract-liquid",
+  "title": "Abstract — liquid chrome folding into a human silhouette",
+  "category": "abstract",
+  "useCase": "Title sequence backdrop, VJ loop, brand bumper",
+  "difficulty": "intermediate",
+  "anchor": {
+    "subject": "A pool of liquid chrome metal",
+    "scene": "A black void with a single narrow strip light overhead",
+    "motion": "Chrome rises, folds into a human silhouette, then collapses back into the pool",
+    "mood": "Sleek, unsettling, precise",
+    "camera": "Slow dolly around the form at eye level",
+    "audio": "Low metallic drone, no melody",
+    "light": "Narrow strip light creating a horizon line of specular highlights"
+  },
+  "prompts": {
+    "seedance-2.0": {
+      "prompt": "A pool of liquid chrome metal rests in a black void beneath a single narrow strip light. The metal rises upward in a smooth column, folds over itself, and resolves into a human silhouette with head, shoulders and arms, still reading as one continuous reflective surface. The silhouette holds for a moment, then collapses back into the pool and settles. A slow dolly camera circles the form at eye level, keeping the strip light reflected as a horizon line of specular highlights that bends with the surface. High-contrast chrome rendering, precise surface tension, deep black background, no particles, no sparks, no text, no watermark, no second figure.",
+      "notes": "Abstract scenes need a start-state and an end-state; without return-to-pool the shot just ends mid-form."
+    },
+    "kling-3.0": {
+      "prompt": "Scene: A black void with a single narrow strip light overhead, no floor texture, no environment.\nCharacters: No people; the subject is a pool of liquid chrome metal.\nAction: The chrome rises as a smooth column, folds over itself and resolves into a human silhouette, holds, then collapses back into the pool.\nCamera: Slow dolly circle around the form at eye level, one continuous move.\nAudio & Style: Low metallic drone, no melody. High-contrast chrome rendering, precise surface tension, deep blacks.\nNegative: no sparks, no particles, no text, no watermark, no second figure, no background objects, no camera cut.",
+      "notes": "Kling handles reflective continuity well but will add sparks if 'metal' is not paired with 'no sparks'."
+    },
+    "veo-3.1": {
+      "prompt": "In a black void, a pool of liquid chrome metal rests beneath a single narrow strip light. The metal rises in a smooth column, folds over itself, and resolves into a human silhouette of head, shoulders and arms, still one continuous reflective surface. It holds, then collapses back into the pool and settles. A slow dolly circles the form at eye level, keeping the strip light reflected as a bending horizon of specular highlights. High-contrast chrome, precise surface tension, deep black background.\n\nDialogue: none.\nAudio: a low metallic drone that resolves into stillness. No melody, no percussion.",
+      "notes": "Veo adds a percussive hit on abstract transitions by default; 'no percussion' prevents it."
+    },
+    "wan-2.7": {
+      "prompt": "Entity: A pool of liquid chrome metal, one continuous reflective surface, no people, no sparks.\nScene: A black void with a single narrow strip light overhead, no floor, no environment.\nMotion: The chrome rises as a smooth column, folds over itself and resolves into a human silhouette, holds, then collapses back into the pool. Slow dolly camera circling at eye level, one continuous move.\nSound: Low metallic drone, no melody, no percussion.",
+      "notes": "Wan's slow collapse is cleaner than most; give it 8+ seconds to avoid a truncated read."
+    },
+    "hailuo-02": {
+      "prompt": "A pool of liquid chrome rises into a human silhouette, surface tension pulling the metal into shoulders and arms before it folds back down and settles. One narrow strip light slides across the reflective surface. Slow dolly at eye level, black void, no sparks, no particles.",
+      "notes": "Emphasise surface tension; Hailuo's fluid solver is the reason this scene works at all."
+    },
+    "gemini-omni": {
+      "prompt": "Create a 6-second abstract clip in a black void. A pool of liquid chrome rises in a column, folds over into a human silhouette, holds, then collapses back into the pool. One narrow strip light overhead reflects as a moving horizon on the surface. Slow dolly around the form at eye level, high-contrast chrome, deep blacks, no sparks. Audio: low metallic drone, no melody.",
+      "notes": "Iterate: 'hold the silhouette two seconds longer and slow the collapse.'"
+    },
+    "runway-gen4.5": {
+      "prompt": "Abstract: a pool of liquid chrome metal in a black void rises in a smooth column, folds over itself into a human silhouette, holds, then collapses back into the pool. A single narrow strip light overhead creates a bending horizon of specular highlights on the surface. Slow dolly around the form at eye level, 35mm, high-contrast chrome, precise surface tension, deep blacks, no particles, no sparks.",
+      "notes": "Aleph variant: 're-light with two strip lights, keep the morph identical.'"
+    },
+    "happyhorse-1.0": {
+      "prompt": "6s duration. Liquid chrome rises from a black pool into a human silhouette, folds, holds, then collapses back, one strip light sliding across the surface, slow dolly at eye level, low metallic drone.",
+      "notes": "31 words. Name the collapse; without it HappyHorse holds the form and burns the clip."
+    },
+    "sora-2": {
+      "prompt": "Style: High-contrast chrome render, deep blacks, precise surface tension, no particles, no sparks.\nCinematography: Slow dolly circling at eye level, one continuous move, 35mm equivalent.\nActions: - The chrome rises as a smooth column.\n- It folds over itself and resolves into a human silhouette.\n- The silhouette holds.\n- It collapses back into the pool and settles.\nBackground Sound: Low metallic drone, no melody.\nDialogue: none.",
+      "notes": "Legacy. Translate to veo-3.1."
+    }
+  }
+}

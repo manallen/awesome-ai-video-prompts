@@ -1,0 +1,55 @@
+{
+  "id": "scene-05-image-to-video",
+  "title": "Image to video — bringing a still café photo to life",
+  "category": "image-to-video",
+  "useCase": "Animating product stills, photo revival, social posts from photos",
+  "difficulty": "beginner",
+  "input": "One reference image: a woman in a red dress seated by a café window, coffee cup on the table",
+  "anchor": {
+    "subject": "The woman from the reference image, unchanged in face, wardrobe and pose",
+    "scene": "Café interior as shown in the reference; do not redesign the space",
+    "motion": "She lifts the cup, sips, sets it down; steam curls; street light shifts outside",
+    "mood": "Quiet, unhurried",
+    "camera": "Locked-off from the reference framing, no reframe",
+    "audio": "Café murmur, cup on saucer, distant street",
+    "light": "Window light as in the reference, unchanged"
+  },
+  "prompts": {
+    "seedance-2.0": {
+      "prompt": "Keep the woman in the reference image exactly as she is: same face, same red dress, same seated pose by the café window with the coffee cup on the table. She lifts the cup slowly, takes a small sip, and sets it back down; steam curls upward from the rim. Outside the window, the street light shifts from afternoon to early evening. The camera stays in the reference framing with no reframe, no zoom and no crop. Preserve the café interior, table objects, and window reflections exactly as in the reference. Natural motion only, no new characters entering frame, no wardrobe change, no face morphing. Subtle ambient café realism, soft window light as in the reference.",
+      "notes": "Lead with 'keep exactly as in reference', then add motion. Seedance over-edits if the preserve clause comes last."
+    },
+    "kling-3.0": {
+      "prompt": "Scene: The café interior from the reference image, table, cup and window reflections unchanged.\nCharacters: The woman in the reference image, identical face, red dress and seated pose.\nAction: She lifts the cup slowly, sips, and sets it down; steam curls from the rim. Street light outside shifts toward early evening.\nCamera: Locked-off in the reference framing, no reframe, no zoom.\nAudio & Style: Café murmur, cup settling on the saucer, distant street. Preserve the reference lighting and color.\nNegative: no wardrobe change, no face morphing, no new people, no camera movement, no background redesign.",
+      "notes": "Kling's strength here is the Negative block: list every attribute you want frozen."
+    },
+    "veo-3.1": {
+      "prompt": "Animate the supplied still. Keep the woman identical to the reference: same face, red dress, seated pose, cup position. She lifts the cup slowly, takes a small sip, and sets it down; steam curls from the rim. Outside the window, the light shifts from afternoon to early evening. Hold the reference framing exactly, no reframe, no zoom, no crop. Preserve the café interior, table objects and window reflections. Natural, restrained motion.\n\nDialogue: none.\nAudio: café murmur, a cup settling on the saucer, a distant street. No music.",
+      "notes": "Veo's image guidance needs the reference for the first frame; input_reference must match the output aspect."
+    },
+    "wan-2.7": {
+      "prompt": "Entity: The woman from the reference image, identical face, red dress, seated pose, cup in front of her.\nScene: The café interior exactly as shown in the reference, including table objects and window reflections.\nMotion: She lifts the cup slowly, sips, and sets it back down; steam curls from the rim. Outside, the street light shifts toward early evening. Locked-off camera in the reference framing, no reframe.\nSound: Café murmur, cup settling on the saucer, distant street, no music.",
+      "notes": "Only describe motion in the Motion block. Restating appearance there causes Wan to redraw her face."
+    },
+    "hailuo-02": {
+      "prompt": "The woman in the reference lifts her cup, sips, and sets it down; steam curls from the rim while the street outside shifts toward evening. Everything else stays exactly as photographed — same face, dress, pose and framing, locked-off camera.",
+      "notes": "One sentence of motion, one sentence of preservation. Hailuo respects the preservation clause strongly."
+    },
+    "gemini-omni": {
+      "prompt": "Animate this still. The woman lifts her coffee cup, takes a small sip, and sets it back down; steam curls from the rim. Outside the window the light shifts from afternoon to early evening. Keep her face, red dress, pose, framing, table objects and window reflections exactly as they are. Locked-off camera, no reframe. Audio: café murmur and the cup settling on the saucer.",
+      "notes": "Works well for iterative follow-ups: 'now the light shifts faster and she looks out the window.'"
+    },
+    "runway-gen4.5": {
+      "prompt": "Animate the supplied still with restrained motion: the woman lifts the cup, sips, and sets it down while steam curls from the rim, and the street light outside shifts toward evening. Hold the reference framing exactly — no reframe, no zoom, no crop. Preserve the café interior, table objects and window reflections. Motion brush on the cup arm only; everything else static.",
+      "notes": "Runway's motion brush is the precise tool here: isolate the arm and let the rest hold."
+    },
+    "happyhorse-1.0": {
+      "prompt": "5s duration. The woman in the photo lifts her cup, sips, sets it down, steam curling, as the street outside shifts toward evening; framing, face, dress and cafe interior unchanged, locked-off.",
+      "notes": "30 words. For i2v, spend them entirely on motion — the image already carries appearance."
+    },
+    "sora-2": {
+      "prompt": "Style: Naturalistic café realism matching the reference photograph; soft window light unchanged.\nCinematography: Locked-off in the reference framing, no reframe, no zoom.\nActions: - She lifts the cup slowly.\n- She takes a small sip.\n- She sets the cup back on the saucer.\n- Steam curls from the rim as the street light outside shifts toward evening.\nBackground Sound: Café murmur, a cup settling on a saucer, distant street traffic.\nDialogue: none.",
+      "notes": "Legacy. Translate to veo-3.1 or kling-3.0."
+    }
+  }
+}

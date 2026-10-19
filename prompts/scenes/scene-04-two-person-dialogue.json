@@ -1,0 +1,54 @@
+{
+  "id": "scene-04-two-person-dialogue",
+  "title": "Two-person dialogue — a kitchen argument that de-escalates",
+  "category": "narrative",
+  "useCase": "Short film scene, series teaser, acting reference",
+  "difficulty": "advanced",
+  "anchor": {
+    "subject": "Two siblings in their thirties standing across a kitchen island",
+    "scene": "A small apartment kitchen at night, one overhead pendant, dishes half-washed",
+    "motion": "They argue, pause, then one laughs first; both settle",
+    "mood": "Tense, then relieved, intimate",
+    "camera": "Two-shot at chest height, slow push in, then settle",
+    "audio": "Dialogue with overlapping interruptions, fridge hum, no music",
+    "light": "Single warm pendant overhead, cool hallway spill from the left"
+  },
+  "prompts": {
+    "seedance-2.0": {
+      "prompt": "Two siblings in their early thirties stand on opposite sides of a small kitchen island at night. The sister, wearing a grey hoodie and hair tied back, speaks first with an urgent gesture. The brother, in a faded blue shirt with sleeves rolled up, interrupts before she finishes. They both stop, look at each other, and the sister laughs first; the brother follows, shoulders dropping. A single warm pendant light hangs directly above the island, with cool hallway light spilling in from the left and a half-washed stack of dishes behind them. Two-shot at chest height, slow push in that settles as they laugh, shallow depth of field, naturalistic apartment realism. Dialogue in double quotes, voices overlapping, no music. Keep both faces stable and distinct throughout. No subtitles, no watermark, no extra characters.",
+      "notes": "Seedance 2.0 wants spoken lines in double quotes and a clear who-speaks-when order."
+    },
+    "kling-3.0": {
+      "prompt": "Scene: A small apartment kitchen at night, one warm pendant above a stone island, half-washed dishes, cool hallway spill from the left.\nCharacters: Sister in a grey hoodie with hair tied back; brother in a faded blue shirt, sleeves rolled up. Ages early thirties.\nAction: The sister speaks first with an urgent gesture, the brother interrupts, both stop, then the sister laughs first and the brother follows, shoulders dropping.\nDialogue: Sister: \"You never called.\" Brother: \"I was going to.\" Sister: \"That's not the same thing.\" Both laugh.\nCamera: Two-shot at chest height, slow push in that settles, shallow depth of field.\nAudio & Style: Overlapping dialogue, fridge hum, no music. Naturalistic apartment realism, warm pendant key.\nNegative: no subtitles, no watermark, no extra characters, no face warp, no laugh track.",
+      "notes": "Kling's character-directed speech handles named speakers well when each line is labelled."
+    },
+    "veo-3.1": {
+      "prompt": "Two siblings in their early thirties stand across a small kitchen island at night. A single warm pendant hangs directly above them; cool hallway light spills from the left. The sister, in a grey hoodie with hair tied back, speaks first with an urgent gesture. The brother, in a faded blue shirt with sleeves rolled up, interrupts before she finishes. Both stop, then the sister laughs first and the brother follows, shoulders dropping. Two-shot at chest height, slow push in that settles as they laugh, shallow depth of field, naturalistic apartment realism.\n\nDialogue: Sister: \"You never called.\" Brother: \"I was going to.\" Sister: \"That's not the same thing.\"\nAudio: Overlapping voices, fridge hum, a dish settling in the sink. No music.",
+      "notes": "Veo's synchronized dialogue is the strongest of the group; keep lines short and let the pauses carry."
+    },
+    "wan-2.7": {
+      "prompt": "Entity: Sister in her early thirties, grey hoodie, hair tied back; brother in a faded blue shirt, sleeves rolled up; both with distinct, stable faces.\nScene: A small apartment kitchen at night, one warm pendant above a stone island, half-washed dishes, cool hallway spill from the left.\nMotion: The sister speaks with an urgent gesture, the brother interrupts, they stop, the sister laughs first and the brother follows as his shoulders drop. Two-shot at chest height, slow push in.\nSound: Voice Sister: \"You never called.\" Voice Brother: \"I was going to.\" Voice Sister: \"That's not the same thing.\" Both laugh. Fridge hum, no music.",
+      "notes": "Wan 2.7 is the most reliable lip-sync of the nine when each speaker is labelled in Sound."
+    },
+    "hailuo-02": {
+      "prompt": "Two siblings in their thirties argue across a kitchen island under one warm pendant, then both stop, and the sister laughs first while the brother's shoulders drop. Overlapping speech, fridge hum, cool hallway light from the left, two-shot at chest height with a slow push in.",
+      "notes": "Hailuo has no reliable dialogue path; use it for reaction beats and dub in post."
+    },
+    "gemini-omni": {
+      "prompt": "Create a 10-second kitchen scene. Two siblings in their early thirties stand across a stone island under one warm pendant at night, with cool hallway light from the left. The sister in a grey hoodie speaks first with an urgent gesture; the brother in a rolled-sleeve blue shirt interrupts. They stop, then the sister laughs and the brother follows. Two-shot at chest height, slow push in. Dialogue: she says \"You never called\", he says \"I was going to\", she replies \"That's not the same thing\". Fridge hum, no music, no subtitles.",
+      "notes": "Omni can be iterated: 'make the brother's interruption land earlier and soften the final laugh.'"
+    },
+    "runway-gen4.5": {
+      "prompt": "Naturalistic two-shot in a small apartment kitchen at night. Two siblings in their thirties face each other across a stone island under a single warm pendant, cool hallway light from the left, half-washed dishes behind. The sister in a grey hoodie argues with an urgent gesture; the brother in a rolled-sleeve blue shirt interrupts, then they both stop and the sister laughs first. Chest-height camera, slow push in, shallow depth of field, 35mm, muted apartment palette.",
+      "notes": "No native audio. Record dialogue separately and match cadence in the edit."
+    },
+    "happyhorse-1.0": {
+      "prompt": "10s duration. Two siblings argue across a kitchen island under one warm pendant, then the sister laughs first and the brother's shoulders drop, cool hallway light from the left, chest-height two-shot, overlapping voices and fridge hum audible.",
+      "notes": "Describe the emotional turn, not the lines. HappyHorse animates the turn reliably in 34 words."
+    },
+    "sora-2": {
+      "prompt": "Style: Naturalistic apartment realism, warm practical key, desaturated hallway spill, subtle grain.\nCinematography: Chest-height two-shot, 35mm equivalent, slow push in that settles, shallow depth of field.\nActions: - The sister speaks first with an urgent gesture.\n- The brother interrupts before she finishes.\n- Both stop and look at each other.\n- The sister laughs first; the brother follows and his shoulders drop.\nBackground Sound: Fridge hum, a dish settling in the sink.\nDialogue: Sister: \"You never called.\" Brother: \"I was going to.\" Sister: \"That's not the same thing.\"",
+      "notes": "Legacy format. Translate to veo-3.1."
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "id": "scene-08-nature-timelapse",
+  "title": "Nature time-lapse — a mountain sunrise revealed by parting cloud",
+  "category": "landscape",
+  "useCase": "Documentary open, travel brand, ambient screensaver",
+  "difficulty": "beginner",
+  "anchor": {
+    "subject": "A jagged snow-capped mountain ridge",
+    "scene": "High alpine valley, low cloud sea below the peaks",
+    "motion": "Cloud sea drifts, peaks emerge as the first light lands, stars fade out",
+    "mood": "Vast, cold, reverent",
+    "camera": "Locked-off wide from a ridge, subtle time-lapse speed",
+    "audio": "High wind, no music",
+    "light": "Blue hour transitioning to alpenglow gold on the summits"
+  },
+  "prompts": {
+    "seedance-2.0": {
+      "prompt": "A jagged snow-capped mountain ridge stands above a sea of low cloud in a high alpine valley. In a time-lapse progression, the cloud sea drifts and thins, the first warm light touches the summits and moves down the rock faces, and the last stars fade from a deep blue sky into pale dawn. The camera is locked off on a neighbouring ridge with no movement, capturing the entire scene at a subtle accelerated pace. Cold blue shadows give way to alpenglow gold, with realistic atmospheric haze between ridgelines. Photorealistic landscape cinematography, high dynamic range, no lens flare, no added birds, no fast cloud stutter, no text or watermark.",
+      "notes": "Say 'time-lapse' and give the light sequence three stages; otherwise you get a static 8 s shot."
+    },
+    "kling-3.0": {
+      "prompt": "Scene: A high alpine valley with a sea of low cloud below a jagged snow-capped ridge, deep blue pre-dawn sky still holding stars.\nCharacters: none. Landscape only.\nAction: In a time-lapse progression the cloud sea drifts and thins, the first warm light touches the summits and travels down the rock faces, and the stars fade into pale dawn.\nCamera: Locked-off wide on a neighbouring ridge, no movement, subtle accelerated pace.\nAudio & Style: High wind only, no music. Photorealistic landscape cinematography, atmospheric haze, high dynamic range.\nNegative: no lens flare, no birds, no cloud stutter, no camera move, no text, no watermark.",
+      "notes": "Kling lists 'Characters: none' cleanly. Explicit emptiness prevents phantom silhouettes."
+    },
+    "veo-3.1": {
+      "prompt": "A time-lapse of a jagged snow-capped mountain ridge above a sea of low cloud in a high alpine valley. The cloud sea drifts and thins; the first warm light touches the summits and moves down the rock faces; the last stars fade from a deep blue sky into pale dawn. Locked-off wide camera on a neighbouring ridge, no movement, subtle accelerated pace, photorealistic landscape cinematography with atmospheric haze between ridgelines, cold blue shadows shifting into alpenglow gold.\n\nDialogue: none.\nAudio: high altitude wind only. No music, no birds.",
+      "notes": "Veo invents birdsong in nature prompts unless explicitly excluded."
+    },
+    "wan-2.7": {
+      "prompt": "Entity: A jagged snow-capped mountain ridge, no people, no animals.\nScene: A high alpine valley with a sea of low cloud below the peaks, deep blue pre-dawn sky with fading stars.\nMotion: Time-lapse progression — the cloud sea drifts and thins, warm light lands on the summits and moves down the rock faces, stars fade into pale dawn. Locked-off wide camera, no movement, subtle accelerated pace.\nSound: High altitude wind only, no music.",
+      "notes": "Drift direction left unspecified here on purpose; Wan picks a plausible direction from the still."
+    },
+    "hailuo-02": {
+      "prompt": "A time-lapse of a cloud sea thinning below a snow-capped ridge as the first warm light touches the summits and travels down the rock, stars fading into pale dawn. Locked-off wide from a neighbouring ridge, cold blue shadows shifting to alpenglow gold, high wind only.",
+      "notes": "Hailuo's atmosphere and haze are excellent when you keep the subject count at one."
+    },
+    "gemini-omni": {
+      "prompt": "Create an 8-second time-lapse: a jagged snow-capped mountain ridge above a sea of low cloud, pre-dawn blue sky with fading stars. The cloud sea drifts and thins, warm light lands on the summits and moves down the rock faces, and the sky brightens into pale dawn. Locked-off wide from a neighbouring ridge, photorealistic landscape with atmospheric haze. Audio: high altitude wind only, no music.",
+      "notes": "Iterate: 'slow the light movement by half and keep the cloud drift.'"
+    },
+    "runway-gen4.5": {
+      "prompt": "Time-lapse wide shot of a jagged snow-capped mountain ridge above a sea of low cloud in a high alpine valley. Cloud sea drifts and thins, warm light lands on the summits and moves down the rock faces, stars fade from deep blue into pale dawn. Locked-off camera on a neighbouring ridge, 24mm equivalent, photorealistic landscape cinematography, atmospheric haze between ridgelines, cold shadows into alpenglow gold.",
+      "notes": "Runway's Gen-4 lighting response is weak on time-lapse; use Aleph to re-light an existing clip instead."
+    },
+    "happyhorse-1.0": {
+      "prompt": "8s duration. Time-lapse of a cloud sea thinning below snow-capped peaks as warm light reaches the summits and stars fade into dawn, locked-off wide, cold blue into alpenglow gold, high wind audible.",
+      "notes": "35 words, one subject, one light event."
+    },
+    "sora-2": {
+      "prompt": "Style: Photorealistic landscape cinematography, high dynamic range, atmospheric haze, documentary tone.\nCinematography: Locked-off wide from a neighbouring ridge, 24mm equivalent, no camera movement, subtle time-lapse acceleration.\nActions: - The cloud sea drifts and thins below the ridge.\n- The first warm light touches the summits.\n- Warm light travels down the rock faces.\n- The last stars fade into pale dawn.\nBackground Sound: High altitude wind only.\nDialogue: none.",
+      "notes": "Legacy. Translate to veo-3.1."
+    }
+  }
+}

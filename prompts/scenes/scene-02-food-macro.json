@@ -1,0 +1,54 @@
+{
+  "id": "scene-02-food-macro",
+  "title": "Food macro — espresso pour into a glass cup",
+  "category": "product-commercial",
+  "useCase": "Cafe brand content, recipe reels, packaging teaser",
+  "difficulty": "beginner",
+  "anchor": {
+    "subject": "A double espresso pouring from a bottomless portafilter into a clear glass cup",
+    "scene": "Dark walnut counter, brushed steel machine in soft focus behind, morning light from a window",
+    "motion": "Two streams merge into one, crema blooms and swirls, a drop of condensation slides down the glass",
+    "mood": "Warm, tactile, slow morning",
+    "camera": "Macro close-up at cup level, locked-off with a slow 5 percent push in",
+    "audio": "Espresso trickle, machine hiss, ceramic clink at the end",
+    "light": "Soft window backlight from behind the cup, rim on the crema"
+  },
+  "prompts": {
+    "seedance-2.0": {
+      "prompt": "A double espresso pours from a bottomless portafilter into a clear glass cup standing on a dark walnut counter. Two thin streams leave the basket and merge into one before hitting the surface, where crema blooms outward in slow spirals. A single condensation droplet slides down the outside of the glass. Behind, a brushed steel espresso machine sits in soft focus. Warm morning window light comes from behind the cup, rimming the crema and leaving the front face in gentle shadow. Macro close-up at cup level, locked-off camera with a slow five percent push in, no pan. Warm filmic color grade, photorealistic liquid detail, shallow depth of field. No text, no watermark, no logos, no steam that turns into smoke.",
+      "notes": "Specify the flow direction and merge point; otherwise Seedance invents a chaotic splash."
+    },
+    "kling-3.0": {
+      "prompt": "Scene: Dark walnut counter in a quiet morning cafe, brushed steel espresso machine soft in the background, warm window backlight behind the glass.\nCharacters: A clear glass cup with espresso forming, a bottomless portafilter above it, no hands in frame.\nAction: Two thin espresso streams leave the basket and merge into one, hitting the surface where crema blooms in slow spirals; one condensation droplet slides down the outside of the glass.\nCamera: Macro close-up at cup level, locked-off tripod, slow five percent push in.\nAudio & Style: Espresso trickle, machine hiss, a ceramic clink at the end. Warm filmic grade, shallow depth of field, photorealistic liquid.\nNegative: no text, no watermark, no logos, no splash, no steam turning into smoke, no extra cups.",
+      "notes": "Kling holds liquid continuity better when the merge is described as a single event."
+    },
+    "veo-3.1": {
+      "prompt": "Macro close-up of two thin espresso streams leaving a bottomless portafilter and merging into one before hitting the surface of a clear glass cup. Crema blooms outward in slow spirals; a single condensation droplet slides down the outside of the glass. The cup stands on a dark walnut counter with a brushed steel espresso machine soft in the background. Warm morning window light comes from behind the glass, rimming the crema. Locked-off camera at cup level with a slow five percent push in, warm filmic grade, shallow depth of field.\n\nDialogue: none.\nAudio: steady espresso trickle, machine hiss, and one ceramic clink near the end. No music, no voice.",
+      "notes": "Veo's synchronized audio makes the trickle land on the pour automatically."
+    },
+    "wan-2.7": {
+      "prompt": "Entity: A clear glass espresso cup, one bottomless portafilter above it, no hands visible; the stream is the subject.\nScene: Dark walnut counter, brushed steel machine soft behind, warm window backlight rimming the glass.\nMotion: Two thin espresso streams leave the basket, merge into one stream, and hit the surface where crema blooms in slow spirals; a single condensation droplet slides down the glass. Locked-off macro at cup level with a slow five percent push in.\nSound: Continuous espresso trickle, machine hiss, one ceramic clink near the end, no music, no voice.",
+      "notes": "Wan's audio_url lets you replace the generated trickle with your own recorded take."
+    },
+    "hailuo-02": {
+      "prompt": "Two thin espresso streams leave a bottomless portafilter and merge into one, striking the surface where crema blooms in slow spirals and surface tension holds the foam edges. A condensation droplet gathers on the glass and slides down. Warm window backlight rims the liquid, shallow depth of field, locked-off macro at cup level.",
+      "notes": "Emphasise surface tension and foam edges; Hailuo renders fluid behaviour more accurately than any other model here."
+    },
+    "gemini-omni": {
+      "prompt": "Create a 6-second macro shot of espresso being poured. Two thin streams leave a bottomless portafilter, merge into one, and hit the surface of a clear glass cup where crema blooms in slow spirals. A condensation droplet slides down the glass. Dark walnut counter, brushed steel machine soft in the background, warm morning window backlight rimming the crema. Locked-off camera at cup level with a slow push in. Warm filmic grade, photorealistic liquid. Audio: espresso trickle, machine hiss, one ceramic clink at the end.",
+      "notes": "Follow up with 'make the crema bloom slower' — Omni adjusts rather than regenerating from scratch."
+    },
+    "runway-gen4.5": {
+      "prompt": "Macro close-up of espresso pouring from a bottomless portafilter into a clear glass cup on a dark walnut counter. Two streams merge into one and crema blooms in slow spirals across the surface. A condensation droplet slides down the glass. Brushed steel machine soft in the background, warm window backlight rimming the cup. Locked-off camera at cup level with a slow five percent push in, 100mm macro equivalent, shallow depth of field, warm filmic grade, photorealistic.",
+      "notes": "Aleph variant: 'change the grade to cooler morning light and remove the machine from the background, keep the pour identical.'"
+    },
+    "happyhorse-1.0": {
+      "prompt": "6s duration. Two espresso streams merge into one and hit a clear glass cup, crema blooming in slow spirals, one condensation droplet sliding down, warm window backlight, locked-off macro at cup level, espresso trickle audible.",
+      "notes": "'Espresso trickle audible' activates the audio path with minimal words."
+    },
+    "sora-2": {
+      "prompt": "Style: Photorealistic macro food photography, warm filmic grade, shallow depth of field.\nCinematography: Locked-off macro at cup level, 100mm equivalent, slow five percent push in, warm window backlight rimming the crema.\nActions: - Two thin espresso streams leave the portafilter and merge into one.\n- The merged stream hits the surface and crema blooms outward in slow spirals.\n- A condensation droplet gathers on the glass and slides down.\n- The pour ends and the surface settles.\nBackground Sound: Continuous espresso trickle, machine hiss, one ceramic clink near the end.\nDialogue: none.",
+      "notes": "Legacy. Translate to veo-3.1 or seedance-2.0 before use."
+    }
+  }
+}

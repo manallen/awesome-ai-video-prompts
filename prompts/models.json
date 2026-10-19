@@ -1,0 +1,187 @@
+{
+  "$schema": "./models.schema.json",
+  "updated": "2026-10-19",
+  "note": "Capabilities are vendor-documented and date-stamped. Always verify against the provider's current docs before shipping. See each entry's `sources`.",
+  "models": [
+    {
+      "id": "seedance-2.0",
+      "name": "Seedance 2.0",
+      "vendor": "ByteDance / Volcano Engine",
+      "status": "active",
+      "format": "prose-8e",
+      "nativeAudio": true,
+      "audioMode": "always-on by default",
+      "durations": "4–15 s (2.0 series), up to 30 s on 2.5",
+      "resolutions": "480p / 720p / 1080p / 4K (2.0), 480p / 720p / 1080p (2.5)",
+      "aspectRatios": ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9"],
+      "strengths": ["multimodal reference (images + video + audio)", "multi-shot narration", "Chinese and English", "dialogue in double quotes"],
+      "weaknesses": ["long prose gets unstable", "reference prompts need explicit subject labels"],
+      "promptLanguage": ["en", "zh"],
+      "labels": ["Subject", "Action", "Scene", "Light", "Camera", "Style", "Quality", "Negative"],
+      "sources": [
+        "https://docs.volcengine.com/docs/82379/1520757",
+        "https://docs.dev.runwayml.com/guides/models/"
+      ]
+    },
+    {
+      "id": "kling-3.0",
+      "name": "Kling 3.0",
+      "vendor": "Kuaishou",
+      "status": "active",
+      "format": "labeled-blocks",
+      "nativeAudio": true,
+      "audioMode": "optional per request",
+      "durations": "3–15 s per generation, storyboard chaining up to ~2 min",
+      "resolutions": "720p / 1080p / 4K tiers",
+      "aspectRatios": ["16:9", "9:16", "1:1"],
+      "strengths": ["Chinese semantics", "character-directed speech", "motion control / reference video", "negative prompt support"],
+      "weaknesses": ["labeled blocks required; flat prose loses structure", "frequent face drift in multi-person shots"],
+      "promptLanguage": ["zh", "en"],
+      "labels": ["Scene", "Characters", "Action", "Camera", "Audio & Style", "Negative"],
+      "sources": [
+        "https://docs.dev.runwayml.com/guides/models/",
+        "https://kling.ai/"
+      ]
+    },
+    {
+      "id": "veo-3.1",
+      "name": "Veo 3.1",
+      "vendor": "Google DeepMind",
+      "status": "active",
+      "format": "prose-audio",
+      "nativeAudio": true,
+      "audioMode": "always generated, synchronized",
+      "durations": "4 / 6 / 8 s per clip; +7 s per extension, up to ~148 s",
+      "resolutions": "720p default, 1080p, 4K (8 s only)",
+      "aspectRatios": ["16:9", "9:16"],
+      "strengths": ["dialogue + SFX + ambience in one pass", "multi-person conversation", "scene extension", "last-frame control"],
+      "weaknesses": ["no documented negative-prompt parameter", "8 s cap per segment unless extended", "4K costs latency"],
+      "promptLanguage": ["en"],
+      "labels": ["Subject", "Action", "Style", "Camera", "Dialogue", "Audio"],
+      "sources": [
+        "https://ai.google.dev/gemini-api/docs/veo",
+        "https://ai.google.dev/gemini-api/docs/video"
+      ]
+    },
+    {
+      "id": "wan-2.7",
+      "name": "Wan 2.7",
+      "vendor": "Alibaba Cloud Model Studio",
+      "status": "active",
+      "format": "four-block",
+      "nativeAudio": true,
+      "audioMode": "auto BGM/SFX, or supply audio_url",
+      "durations": "2–15 s (default 5 s)",
+      "resolutions": "720P / 1080P (default 1080P)",
+      "aspectRatios": ["16:9", "9:16", "1:1", "4:3", "3:4"],
+      "strengths": ["digital-human lip-sync", "audio_url conditioning", "negative_prompt parameter", "multi-shot via natural language timestamps"],
+      "weaknesses": ["no separate dialogue parameter", "prompt_extend rewrites short prompts (adds latency)"],
+      "promptLanguage": ["zh", "en"],
+      "labels": ["Entity", "Scene", "Motion", "Sound"],
+      "sources": [
+        "https://help.aliyun.com/zh/model-studio/text-to-video-api-reference"
+      ]
+    },
+    {
+      "id": "hailuo-02",
+      "name": "MiniMax Hailuo / H3",
+      "vendor": "MiniMax",
+      "status": "active",
+      "format": "terse-prose",
+      "nativeAudio": true,
+      "audioMode": "native audio on H3 Max; audio reference on H3",
+      "durations": "6–10 s typical",
+      "resolutions": "480p / 768p / 1080p depending on tier",
+      "aspectRatios": ["16:9", "9:16", "1:1"],
+      "strengths": ["physics simulation (fluid, fire, cloth, gravity)", "handles fast action without morphing", "short prompts win"],
+      "weaknesses": ["padded prompts degrade output", "limited long-form narrative"],
+      "promptLanguage": ["en", "zh"],
+      "labels": [],
+      "sources": [
+        "https://docs.dev.runwayml.com/guides/models/"
+      ]
+    },
+    {
+      "id": "gemini-omni",
+      "name": "Gemini Omni Flash 1.1",
+      "vendor": "Google",
+      "status": "active",
+      "format": "instruction",
+      "nativeAudio": true,
+      "audioMode": "native audio",
+      "durations": "short-form (provider-defined)",
+      "resolutions": "provider-defined",
+      "aspectRatios": ["16:9", "9:16", "1:1"],
+      "strengths": ["iterative editing", "in-image text rendering", "cross-modal instruction following", "conversational refinement"],
+      "weaknesses": ["newest surface; capability matrix shifts between releases", "less community prompt lore than Kling/Veo"],
+      "promptLanguage": ["en"],
+      "labels": [],
+      "sources": [
+        "https://ai.google.dev/gemini-api/docs/video",
+        "https://ai.google.dev/gemini-api/docs/models"
+      ]
+    },
+    {
+      "id": "runway-gen4.5",
+      "name": "Runway Gen-4.5 / Aleph 2.0",
+      "vendor": "Runway",
+      "status": "active",
+      "format": "prose-edit",
+      "nativeAudio": false,
+      "audioMode": "none (post-production)",
+      "durations": "5–10 s per clip, extendable",
+      "resolutions": "720p / 1080p",
+      "aspectRatios": ["16:9", "9:16", "1:1"],
+      "strengths": ["video-to-video editing verbs: add / remove / change / replace / re-light / re-style", "camera control", "consistent characters"],
+      "weaknesses": ["no native audio", "editing verbs only apply to Aleph, not Gen-4 text-to-video"],
+      "promptLanguage": ["en"],
+      "labels": [],
+      "sources": [
+        "https://docs.dev.runwayml.com/guides/models/"
+      ]
+    },
+    {
+      "id": "happyhorse-1.0",
+      "name": "HappyHorse 1.0",
+      "vendor": "HappyHorse",
+      "status": "active",
+      "format": "compact-prose",
+      "nativeAudio": true,
+      "audioMode": "native audio, activated by explicit sound cues",
+      "durations": "3–15 s (default 5 s)",
+      "resolutions": "720p / 1080p",
+      "aspectRatios": ["16:9", "9:16", "1:1"],
+      "strengths": ["compact 30–55 word prompts", "ASMR / sound-led shorts", "cheap iteration for social formats"],
+      "weaknesses": ["long prompts dilute the subject", "weak on complex multi-character blocking"],
+      "promptLanguage": ["en", "zh"],
+      "labels": [],
+      "sources": [
+        "https://docs.dev.runwayml.com/guides/models/"
+      ]
+    },
+    {
+      "id": "sora-2",
+      "name": "Sora 2 / Sora 2 Pro",
+      "vendor": "OpenAI",
+      "status": "retired",
+      "retiredOn": "2026-09-24",
+      "format": "labeled-blocks",
+      "nativeAudio": true,
+      "audioMode": "always generated",
+      "durations": "4 / 8 / 12 s, up to 20 s; extensions to 120 s",
+      "resolutions": "1280x720, 1920x1080, 1080x1920",
+      "aspectRatios": ["16:9", "9:16"],
+      "strengths": ["physical realism", "cinematic look", "style block + beat-separated actions"],
+      "weaknesses": ["API shut down 2026-09-24 with no one-to-one replacement", "prompts now need migration"],
+      "promptLanguage": ["en"],
+      "labels": ["Style", "Cinematography", "Actions", "Background Sound", "Dialogue"],
+      "migration": {
+        "recommendedTargets": ["veo-3.1", "kling-3.0", "seedance-2.0"],
+        "note": "Sora 2's layered Style/Cinematography/Actions structure maps most cleanly onto Veo 3.1 prose + audio, then Kling 3.0 blocks."
+      },
+      "sources": [
+        "https://developers.openai.com/api/docs/guides/video-generation"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+aivp — Awesome AI Video Prompts
+
+Cross-model AI video prompt library: 10 scenes x 9 models, a structural
+translator, and a linter. Zero dependencies.
+
+USAGE
+  aivp <command> [options]
+
+COMMANDS
+  list                        List scenes (add --models for coverage)
+  show <scene> [--model id]   Print a scene, or one model's prompt
+  search <query>              Keyword search across scenes
+  models [--active]           Print the model capability registry
+  translate <from> <to> [f]   Convert a prompt between model formats
+  validate <model> [file]     Lint one prompt (stdin when file is omitted)
+  validate --all              Lint every prompt in the library
+  export [--format json|md]   Emit the whole dataset
+  help                        This text
+
+OPTIONS
+  --model <id>       Restrict to one model
+  --category <c>     Filter by scene category
+  --limit <n>        Max results (default 10)
+  --json             Machine-readable output
+  --notes            Show authoring notes with a prompt
+  --verbose          Include info-level lint findings
+  --allow-errors     Exit 0 even when lint errors exist
+  --kind <k>         text-to-video | image-to-video | motion-control
+
+EXAMPLES
+  aivp search "rainy portrait" --limit 5
+  aivp show scene-10-wuxia-duel --model kling-3.0
+  aivp translate sora-2 veo-3.1 ./my-prompt.txt
+  cat prompt.txt | aivp validate kling-3.0
+  aivp validate --all --verbose
+
+Model IDs: seedance-2.0, kling-3.0, veo-3.1, wan-2.7, hailuo-02,
+           gemini-omni, runway-gen4.5, happyhorse-1.0, sora-2 (retired)
+
+Docs: https://freecreate.app

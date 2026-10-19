@@ -1,0 +1,58 @@
+{
+  "name": "awesome-ai-video-prompts",
+  "version": "1.0.0",
+  "description": "Cross-model AI video prompt library: 10 scenes × 8 models, prompt compiler, translator and validator. Zero dependencies.",
+  "type": "module",
+  "license": "MIT",
+  "homepage": "https://freecreate.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manallen/awesome-ai-video-prompts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/manallen/awesome-ai-video-prompts/issues"
+  },
+  "keywords": [
+    "ai-video",
+    "prompt-engineering",
+    "text-to-video",
+    "image-to-video",
+    "seedance",
+    "kling",
+    "veo",
+    "wan",
+    "hailuo",
+    "sora",
+    "runway",
+    "gemini-omni",
+    "awesome-list",
+    "llm"
+  ],
+  "bin": {
+    "aivp": "./bin/cli.mjs"
+  },
+  "exports": {
+    ".": "./src/index.mjs",
+    "./prompts": "./prompts/generated.json",
+    "./models": "./prompts/models.json"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "prompts/",
+    "docs/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build:data": "node scripts/build-data.mjs",
+    "test": "node --test test/*.test.mjs",
+    "lint:data": "node bin/cli.mjs validate --all",
+    "site": "node scripts/serve-site.mjs",
+    "build": "node scripts/build-data.mjs",
+    "build:site": "node scripts/build-site.mjs"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "id": "scene-03-character-portrait",
+  "title": "Cinematic portrait — lamplight on a weathered face",
+  "category": "portrait",
+  "useCase": "Character intro, documentary title card, casting board",
+  "difficulty": "beginner",
+  "anchor": {
+    "subject": "A weathered fisherman in his sixties, salt-stiff hair, pale eyes",
+    "scene": "Dim cabin, single kerosene lamp on a table, rain-streaked window behind",
+    "motion": "He lifts his eyes from the table to the lens and holds; smoke from the lamp drifts across",
+    "mood": "Still, heavy, unsentimental",
+    "camera": "Medium close-up at eyeline, locked, shallow depth of field",
+    "audio": "Rain on glass, lamp wick hiss, no music",
+    "light": "Warm practical from below-left, cold blue rim from the window"
+  },
+  "prompts": {
+    "seedance-2.0": {
+      "prompt": "A weathered fisherman in his sixties with salt-stiff grey hair and pale eyes sits at a wooden table inside a dim cabin. He slowly lifts his eyes from the table to the camera and holds the look without smiling. A kerosene lamp on the table throws warm light from below-left across the deep lines of his face, while cold blue light from a rain-streaked window rims his hair and shoulder. Smoke from the lamp wick drifts across the beam. Medium close-up at eyeline, locked-off camera, shallow depth of field, 50mm equivalent. Documentary realism, natural skin texture, visible pores, subtle film grain. Keep his face shape and age identical across the shot. No subtitles, no watermark, no added light sources, no smiling.",
+      "notes": "Name deliverable-faces and eye-colour; generic 'old man' produces a different person each generation."
+    },
+    "kling-3.0": {
+      "prompt": "Scene: A dim wooden cabin interior, rain streaking the single window, one kerosene lamp on a scarred table.\nCharacters: A fisherman in his sixties, salt-stiff grey hair, pale eyes, deep wind lines, faded wool sweater, no hat.\nAction: He sits still, then slowly lifts his eyes from the table to the camera and holds the gaze for two seconds; his jaw tightens slightly. Lamp smoke drifts across the light beam.\nCamera: Medium close-up at eyeline, locked tripod, 50mm, shallow depth of field.\nAudio & Style: Rain on glass, lamp wick hiss, no music. Documentary realism, natural skin texture, subtle film grain.\nNegative: no smiling, no hat, no extra people, no subtitles, no watermark, no face warp, no double exposure.",
+      "notes": "Kling holds a fixed face best when you forbid smiling and specify a hat state."
+    },
+    "veo-3.1": {
+      "prompt": "A documentary-style medium close-up of a weathered fisherman in his sixties with salt-stiff grey hair and pale eyes, seated at a scarred wooden table in a dim cabin. He slowly lifts his eyes from the table to the camera and holds the look, jaw tightening. A kerosene lamp on the table throws warm light from below-left across the deep lines of his face; cold blue light from a rain-streaked window rims his hair and shoulder. Lamp smoke drifts through the beam. Locked-off camera at eyeline, 50mm, shallow depth of field, natural skin texture, subtle film grain, unsentimental tone.\n\nDialogue: none.\nAudio: rain on glass, a faint lamp wick hiss, and the wooden table settling. No music.",
+      "notes": "Veo will add a score unless told not to. 'No music' is load-bearing."
+    },
+    "wan-2.7": {
+      "prompt": "Entity: A fisherman in his sixties with salt-stiff grey hair, pale eyes, deep wind lines, and a faded wool sweater.\nScene: A dim wooden cabin, rain on the single window, one kerosene lamp on a scarred table casting warm light from below-left and cold blue rim from the window.\nMotion: He sits still, then lifts his eyes from the table to the camera and holds the gaze; his jaw tightens. Lamp smoke drifts across the light. Medium close-up at eyeline, locked-off camera, shallow depth of field.\nSound: Rain on glass, lamp wick hiss, faint wood creak, no music.",
+      "notes": "Wan lip-syncs only when you supply Sound lines. Here Sound is ambience, so the mouth stays closed."
+    },
+    "hailuo-02": {
+      "prompt": "A fisherman in his sixties lifts his eyes from a scarred wooden table to the camera and holds the look. Warm lamp light rakes the deep lines of his face from below-left while cold blue window light rims his hair. Rain streaks the glass behind him; lamp smoke drifts through the beam. Locked-off medium close-up, shallow depth of field, natural skin texture, no score.",
+      "notes": "Terse wins. Only state the two light sources — Hailuo resolves the contrast itself."
+    },
+    "gemini-omni": {
+      "prompt": "Generate an 8-second documentary portrait. A fisherman in his sixties with salt-stiff grey hair and pale eyes sits at a scarred wooden table in a dim cabin and slowly lifts his eyes to the camera. Light him with a kerosene lamp from below-left and cold blue window light rimming his hair; rain streaks the window behind him. Locked-off medium close-up at eyeline, 50mm, shallow depth of field, natural skin texture, unsentimental. Keep his face identical throughout. Audio: rain on glass and lamp hiss, no music.",
+      "notes": "Follow-up editing works well here: 'age him five more years but keep the lighting.'"
+    },
+    "runway-gen4.5": {
+      "prompt": "Documentary medium close-up of a weathered fisherman in his sixties, salt-stiff grey hair, pale eyes, faded wool sweater, at a scarred wooden table in a dim cabin. He lifts his eyes to camera and holds. Kerosene lamp warm light from below-left, cold blue rim from a rain-streaked window, lamp smoke drifting. Locked-off camera at eyeline, 50mm, shallow depth of field, natural skin texture, subtle grain, unsentimental mood.",
+      "notes": "Pair with a rain layer. In Aleph: 're-light him with a single soft window source and remove the lamp, keep the expression.'"
+    },
+    "happyhorse-1.0": {
+      "prompt": "5s duration. A fisherman in his sixties lifts his eyes to camera in a dim cabin, kerosene lamp from below-left, cold blue rain-window rim, lamp smoke drifting, locked-off medium close-up, rain audible on glass.",
+      "notes": "33 words with native rain sound. Do not add style adjectives; they crowd out the face."
+    },
+    "sora-2": {
+      "prompt": "Style: Documentary realism, natural skin texture, subtle film grain, desaturated cool shadows against warm practical light.\nCinematography: Locked-off medium close-up at eyeline, 50mm equivalent, shallow depth of field, warm kerosene practical from below-left and cold blue rim from a rain-streaked window.\nActions: - The fisherman sits motionless, eyes down on the table.\n- He lifts his eyes to the camera.\n- He holds the gaze, jaw tightening.\n- Lamp smoke drifts across the beam.\nBackground Sound: Rain on glass, a faint lamp wick hiss, the table creaking once.\nDialogue: none.",
+      "notes": "Legacy. Translate to veo-3.1 for a live target."
+    }
+  }
+}

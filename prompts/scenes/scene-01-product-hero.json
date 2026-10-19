@@ -1,0 +1,54 @@
+{
+  "id": "scene-01-product-hero",
+  "title": "Luxury product hero — glass bottle on wet stone",
+  "category": "product-commercial",
+  "useCase": "E-commerce hero video, paid social, brand launch",
+  "difficulty": "beginner",
+  "anchor": {
+    "subject": "A rectangular glass perfume bottle filled with amber liquid",
+    "scene": "Polished black stone plinth, dark seamless background, fine water droplets on the surface",
+    "motion": "Bottle rotates slowly through 360 degrees as a mist puff drifts through the light",
+    "mood": "Premium, restrained, high-end commercial",
+    "camera": "Medium close-up at plinth height, slow orbit",
+    "audio": "Low room tone, soft glass chime on the turn, no music",
+    "light": "Single hard key from camera-left with a warm bounce card, deep falloff"
+  },
+  "prompts": {
+    "seedance-2.0": {
+      "prompt": "A rectangular glass perfume bottle filled with amber liquid stands centred on a polished black stone plinth. The bottle rotates slowly through a full 360 degrees while a fine mist puff drifts across the frame from camera-left. The background is dark and seamless, with scattered water droplets beading on the stone. A single hard key light from camera-left carves a bright rim along the glass edge, with a warm bounce card softening the shadow side and deep falloff into black. Medium close-up at plinth height, one slow orbital camera move, no zoom. High-end commercial product photography, photorealistic glass and liquid refraction, subtle film grain, high-resolution detail. The bottle shape, label position and liquid level stay identical throughout. No subtitles, no watermark, no added logos, no morphing.",
+      "notes": "Eight-element prose. Keep one camera verb only; the orbit carries the whole shot."
+    },
+    "kling-3.0": {
+      "prompt": "Scene: A dark studio floor of polished black stone with fine water droplets, seamless black background, single hard key light from camera-left with a warm bounce.\nCharacters: One rectangular glass perfume bottle filled with amber liquid, standing upright, label facing camera.\nAction: The bottle rotates slowly through a full 360 degrees while a fine mist puff drifts across frame; droplets stay beaded on the stone and do not spray.\nCamera: Medium close-up at plinth height, slow orbital move, fixed focal length.\nAudio & Style: Low room tone, a soft glass chime on the turn, no music. High-end commercial product photography, photorealistic refraction, subtle film grain.\nNegative: no subtitles, no watermark, no added logos, no morphing, no double bottle, no extra reflections.",
+      "notes": "Kling rewards labeled blocks. Put the audio cue in the same block as style."
+    },
+    "veo-3.1": {
+      "prompt": "A rectangular glass perfume bottle filled with amber liquid rotates slowly through a full 360 degrees on a polished black stone plinth. Fine water droplets bead on the stone; a soft mist puff drifts across the frame from camera-left. The background is seamless black. A single hard key light from camera-left carves a bright rim on the glass edge, with a warm bounce softening the shadow side and deep falloff behind. Medium close-up at plinth height with one slow orbital camera move, photorealistic product commercial look, subtle film grain.\n\nDialogue: none.\nAudio: low studio room tone with a faint glass chime as the bottle turns; no music, no voice.",
+      "notes": "Veo generates audio whether or not you ask. Say 'no music' explicitly or it invents a bed."
+    },
+    "wan-2.7": {
+      "prompt": "Entity: A rectangular glass perfume bottle with amber liquid, sharp faceted edges, label facing the lens, no hand visible.\nScene: Polished black stone plinth covered in fine water droplets, seamless dark background, single hard key light from camera-left with a warm bounce and deep falloff.\nMotion: The bottle rotates slowly and continuously through 360 degrees at a constant speed; a fine mist puff drifts across frame from the left and dissipates. Medium close-up at plinth height, slow orbital camera move, no zoom.\nSound: Low studio room tone, a faint glass chime on each quarter turn, no music, no voice.",
+      "notes": "Wan 2.7 reads Sound as a first-class block. Leave it out and it auto-generates BGM."
+    },
+    "hailuo-02": {
+      "prompt": "A rectangular glass perfume bottle filled with amber liquid turns slowly on wet black stone, water droplets beading and holding their shape as the glass rotates. A single hard key light rakes the edge, refracting through the liquid; mist drifts across frame and thins out. Deep black falloff behind, precise surface tension on every droplet, steady orbital camera at plinth height.",
+      "notes": "Two sentences. Hailuo outperforms on water-surface physics when the prompt is terse."
+    },
+    "gemini-omni": {
+      "prompt": "Generate a 6-second product hero shot: a rectangular glass perfume bottle of amber liquid on a polished black stone plinth, fine water droplets on the stone, seamless dark background, one hard key light from camera-left with a warm bounce. The bottle rotates slowly through 360 degrees while a fine mist puff drifts across frame. Medium close-up at plinth height, slow orbit. Photorealistic, quiet luxury commercial tone. Keep the label position locked to the bottle. Add a faint glass chime on the turn and a low room tone; no music.",
+      "notes": "Omni accepts instruction-style prompts and can be iterated in follow-up turns ('make the key light harder')."
+    },
+    "runway-gen4.5": {
+      "prompt": "A rectangular glass perfume bottle filled with amber liquid rotates slowly through 360 degrees on a polished black stone plinth with fine water droplets. Seamless black background. A single hard key light from camera-left creates a rim on the glass edge, warm bounce on the shadow side, deep falloff behind. Medium close-up at plinth height, slow orbital camera, 35mm lens, photorealistic commercial product photography, subtle grain, no logo, no text.",
+      "notes": "No audio. Pair with a chime in post. Aleph variant: 're-light with a cooler key and remove the water droplets, keep the bottle rotation unchanged.'"
+    },
+    "happyhorse-1.0": {
+      "prompt": "6s duration. A rectangular glass perfume bottle of amber liquid turns slowly on wet black stone, water droplets holding shape, one hard key light rimming the glass, mist drifting and thinning, seamless black falloff, steady orbital medium close-up, quiet luxury commercial look.",
+      "notes": "39 words. Lead with duration and one subject; HappyHorse degrades past ~55 words."
+    },
+    "sora-2": {
+      "prompt": "Style: Photorealistic high-end commercial product photography, subtle film grain, quiet luxury palette.\nCinematography: Medium close-up at plinth height, 50mm equivalent, slow 360-degree orbital move, single hard key light from camera-left with a warm bounce and deep falloff.\nActions: - The bottle begins at rest with the label facing camera.\n- It turns continuously and evenly through a full rotation.\n- A fine mist puff drifts across frame from left and dissipates before the shot ends.\n- Water droplets on the stone stay beaded and do not spray.\nBackground Sound: Low studio room tone, one faint glass chime on the quarter turn.\nDialogue: none.",
+      "notes": "Legacy format. The API was shut down on 2026-09-24; run this through translate --to veo-3.1 for a live target."
+    }
+  }
+}
