@@ -6,6 +6,7 @@
  * never publishes a broken dataset.
  */
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -48,9 +49,17 @@ const coverage = Object.fromEntries(
   }]),
 );
 
+// Deterministic by construction: no timestamps, so CI can assert that the
+// committed file matches a fresh build. Provenance is the source digest.
+const sourceDigest = createHash("sha256")
+  .update(JSON.stringify(scenes))
+  .update(JSON.stringify(models))
+  .digest("hex")
+  .slice(0, 16);
+
 const out = {
   schemaVersion: 1,
-  generatedAt: new Date().toISOString(),
+  sourceDigest,
   counts: {
     scenes: scenes.length,
     models: models.length,
@@ -63,5 +72,5 @@ const out = {
 
 writeFileSync(path.join(promptsDir, "generated.json"), `${JSON.stringify(out, null, 2)}\n`);
 console.log(
-  `Wrote prompts/generated.json — ${out.counts.scenes} scenes, ${out.counts.models} models, ${out.counts.prompts} prompts`,
+  `Wrote prompts/generated.json — ${out.counts.scenes} scenes, ${out.counts.models} models, ${out.counts.prompts} prompts (digest ${sourceDigest})`,
 );
