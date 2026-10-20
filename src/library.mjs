@@ -13,8 +13,10 @@ import { analyzePrompt, summarize } from "./analyze.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const libraryPath = path.resolve(here, "..", "prompts", "library.json");
+const familiesPath = path.resolve(here, "..", "prompts", "families.json");
 
 let cached = null;
+let familiesCached = null;
 
 export function loadLibrary() {
   if (!cached) {
@@ -158,4 +160,45 @@ export function corpusStats(options = {}) {
 export function analyzeRecord(id) {
   const record = libraryRecord(id);
   return { record, analysis: analyzePrompt(record.prompt, record.modelFamily) };
+}
+
+// --- family registry -------------------------------------------------------
+
+/** The capability registry for the imported corpus (prompts/families.json). */
+export function loadFamilies() {
+  if (!familiesCached) familiesCached = JSON.parse(readFileSync(familiesPath, "utf8"));
+  return familiesCached;
+}
+
+/**
+ * Families whose capabilities could not be vendor-verified. These are fine to
+ * import but must not be described as documented behaviour.
+ */
+export function unverifiedFamilies() {
+  const registry = loadFamilies();
+  return registry.families
+    .filter((f) => f.verification !== "vendor-documented")
+    .map((f) => ({ family: f.family, name: f.name, verification: f.verification, note: f.note }));
+}
+
+/** Every family present in the corpus, joined with its registry entry. */
+export function familyCoverage() {
+  const library = loadLibrary();
+  const registry = loadFamilies();
+  const byFamily = new Map(registry.families.map((f) => [f.family, f]));
+  return Object.entries(library.byFamily)
+    .sort((a, b) => b[1] - a[1])
+    .map(([family, count]) => {
+      const entry = byFamily.get(family);
+      return {
+        family,
+        count,
+        registered: Boolean(entry),
+        name: entry?.name ?? null,
+        vendor: entry?.vendor ?? null,
+        verification: entry?.verification ?? "unregistered",
+        nativeAudio: entry?.nativeAudio ?? null,
+        note: entry?.note ?? null,
+      };
+    });
 }

@@ -15,6 +15,9 @@ import {
   attributionLines,
   corpusStats,
   analyzeRecord,
+  loadFamilies,
+  familyCoverage,
+  unverifiedFamilies,
 } from "./library.mjs";
 import { analyzePrompt } from "./analyze.mjs";
 
@@ -52,6 +55,9 @@ export {
   corpusStats,
   analyzeRecord,
   analyzePrompt,
+  loadFamilies,
+  familyCoverage,
+  unverifiedFamilies,
 };
 
 export { translate, validateAll, countWords, countCJK, getModel, activeModels, retiredModels };
@@ -71,4 +77,5 @@ export default {
   libraryIndex,
   corpusStats,
   analyzePrompt,
+  familyCoverage,
 };

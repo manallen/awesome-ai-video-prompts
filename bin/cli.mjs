@@ -16,6 +16,7 @@
  *   aivp get <record-id>               Print one imported record in full
  *   aivp credits [--source X]          Attribution lines for imported records
  *   aivp stats [--json]                Structural statistics per model family
+ *   aivp families [--unverified]       Capability registry for imported families
  *   aivp inspect <record-id>           Prompt anatomy for one imported record
  */
 import { readFileSync } from "node:fs";
@@ -31,6 +32,8 @@ import {
   attributionLines,
   corpusStats,
   analyzeRecord,
+  familyCoverage,
+  unverifiedFamilies,
 } from "../src/library.mjs";
 
 const argv = process.argv.slice(2);
@@ -287,6 +290,34 @@ const COMMANDS = {
     process.stdout.write("\n");
     process.stdout.write(`${record.prompt.trim()}\n`);
     if (record.notes) process.stdout.write(`\n# ${record.notes}\n`);
+  },
+
+  families() {
+    const coverage = familyCoverage();
+    if (has("json")) {
+      json({ families: coverage, unverified: unverifiedFamilies() });
+      return;
+    }
+    const onlyUnverified = has("unverified");
+    const rows = onlyUnverified ? coverage.filter((f) => f.verification !== "vendor-documented") : coverage;
+    process.stdout.write(
+      "family          records  audio  verification        name\n" +
+        "-".repeat(78) + "\n",
+    );
+    for (const row of rows) {
+      const audio = row.nativeAudio === null ? "  ?  " : row.nativeAudio ? " yes " : " no  ";
+      process.stdout.write(
+        `${row.family.padEnd(14)} ${String(row.count).padStart(7)}  ${audio}  ` +
+          `${row.verification.padEnd(18)} ${row.name ?? "(unregistered)"}\n`,
+      );
+    }
+    if (!onlyUnverified) {
+      const unverified = unverifiedFamilies();
+      if (unverified.length > 0) {
+        process.stdout.write("\nNot vendor-verified (imported but not documented behaviour):\n");
+        for (const f of unverified) process.stdout.write(`  ${f.family.padEnd(14)} ${f.verification}\n`);
+      }
+    }
   },
 
   stats() {

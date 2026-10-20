@@ -301,7 +301,8 @@ Three findings that survive reading the underlying prompts:
    MiniMax near **271**. An eightfold gap — copy-pasting between them loses either
    the subject or the detail.
 2. **Audio direction is a family habit, not a capability.** Veo prompts name
-   dialogue 51% of the time; HappyHorse prompts 7%. Both generate audio.
+   dialogue 51% of the time; HappyHorse prompts 7%. Both families include
+   audio-capable models — the difference is authoring habit, not hardware.
 3. **Negative constraints are not universal.** Pika-family prompts carry
    exclusions 91% of the time; HappyHorse 4%. Porting a prompt between them flips
    you between over- and under-constrained.
@@ -325,6 +326,35 @@ labeled blocks       none
 Every figure is a literal pattern match. The tables describe **this corpus**, not
 what any model requires — a prompt that omits a cue is not evidence the model can
 do without it.
+
+### Capability verification
+
+Not every family in the corpus can be vendor-verified. `aivp families` shows how
+each one was established:
+
+```bash
+$ aivp families
+family          records  audio  verification        name
+------------------------------------------------------------------------------
+seedance          1096   yes   vendor-documented  Seedance
+minimax            722   ?     vendor-documented  MiniMax H3 / Hailuo
+wan                213   yes   vendor-documented  Wan
+happyhorse         100   yes   vendor-documented  HappyHorse 1.0
+kling               94   yes   vendor-documented  Kling
+sora                83   yes   vendor-documented  Sora 2
+veo                 67   yes   vendor-documented  Veo
+jimeng              22   yes   third-party-only   即梦 / Jimeng
+pika                22   no    third-party-only   Pika
+higgsfield           9   no    third-party-only   Higgsfield
+```
+
+Audio is tri-state on purpose: `?` means the vendor documents audio as an
+**input** reference without stating that output carries a track. Two naming
+caveats live in [prompts/families.json](prompts/families.json):
+
+- **Kling 4.0** appears in 12 imported prompts but is **not** on the vendor model
+  list consulted on 2026-10-20 — treat those as retrospective templates.
+- **Luma Ray 3.2** appears in the corpus; the vendor documents Ray 2 only.
 
 ---
 

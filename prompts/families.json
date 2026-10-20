@@ -1,0 +1,226 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-10-20",
+  "description": "Model families that appear in the imported corpus. This is deliberately separate from prompts/models.json: that registry covers the nine models the curated scenes are written for, with label formats and per-model prompt structure. This one covers every family present in the imported data, and records how well each family's capabilities are actually verified.",
+  "verificationLevels": {
+    "vendor-documented": "Capabilities read from vendor documentation or the vendor's own repository on 2026-10-20.",
+    "third-party-only": "The model name appears in third-party prompt collections; no vendor page was retrievable to confirm capabilities.",
+    "unverified": "Present in the corpus but neither vendor-documented nor described by a source this project trusts."
+  },
+  "families": [
+    {
+      "family": "seedance",
+      "name": "Seedance",
+      "vendor": "ByteDance / Volcano Engine",
+      "verification": "vendor-documented",
+      "nativeAudio": true,
+      "durations": "4–15 s (2.0 series); 4–30 s (2.5)",
+      "resolutions": "480p / 720p / 1080p / 4K (2.0); 480p / 720p / 1080p (2.5)",
+      "aliases": ["seedance", "seedance-2.0", "seedance-2.5", "Seedance", "Seedance 2.0", "Seedance 2.5"],
+      "note": "Seedance 2.5 raises the ceiling to 30 s and accepts up to 30 images / 10 videos / 10 audio clips as references.",
+      "sources": ["https://docs.volcengine.com/docs/82379/1520757"]
+    },
+    {
+      "family": "kling",
+      "name": "Kling",
+      "vendor": "Kuaishou",
+      "verification": "vendor-documented",
+      "nativeAudio": true,
+      "durations": "3–15 s (3.0 tiers); 5 or 10 s (2.5 Turbo Pro)",
+      "resolutions": "720p / 1080p / 4K tiers",
+      "aliases": ["kling-3.0", "kling-4.0", "Kling 3.0"],
+      "note": "Kling 3.0 Standard / Pro / 4K are documented. `kling-4.0` appears in 12 imported prompts from a third-party collection but is NOT listed on the vendor model page consulted on 2026-10-20 — treat those prompts as retrospective unless you can see the model in your own account.",
+      "sources": ["https://docs.dev.runwayml.com/guides/models/", "https://kling.ai/"]
+    },
+    {
+      "family": "veo",
+      "name": "Veo",
+      "vendor": "Google DeepMind",
+      "verification": "vendor-documented",
+      "nativeAudio": true,
+      "durations": "4 / 6 / 8 s per clip; +7 s per extension",
+      "resolutions": "720p default; 1080p and 4K at 8 s only",
+      "aliases": ["veo-3", "veo-3.1", "Veo"],
+      "note": "Audio is generated on every request; there is no documented negative-prompt parameter.",
+      "sources": ["https://ai.google.dev/gemini-api/docs/veo"]
+    },
+    {
+      "family": "wan",
+      "name": "Wan",
+      "vendor": "Alibaba Cloud Model Studio",
+      "verification": "vendor-documented",
+      "nativeAudio": true,
+      "durations": "2–15 s (2.7); 2–30 s (3.0)",
+      "resolutions": "480p / 720p / 1080p",
+      "aliases": ["wan-2.5", "wan-2.6", "wan-2.7", "wan-3", "wan-3-prime", "wan-3.0"],
+      "note": "3.0 and 3.0 Prime list built-in audio. 2.7 accepts an `audio_url` to replace generated sound.",
+      "sources": [
+        "https://help.aliyun.com/zh/model-studio/text-to-video-api-reference",
+        "https://docs.dev.runwayml.com/guides/models/"
+      ]
+    },
+    {
+      "family": "minimax",
+      "name": "MiniMax H3 / Hailuo",
+      "vendor": "MiniMax",
+      "verification": "vendor-documented",
+      "nativeAudio": null,
+      "durations": "4–15 s (H3); 5–15 s (H3 Max)",
+      "resolutions": "768P / 2K (H3); 480P / 768P (H3 Max)",
+      "aliases": [
+        "minimax-h3", "hailuo-02", "MiniMax H3", "MiniMax H3 (creator-attributed)",
+        "MiniMax H3 Base FL2VA", "MiniMax H3 Base Ref2VA", "MiniMax H3 · ComfyUI",
+        "MiniMax H3 · Local", "MiniMax H3 · PhotoGPT", "MiniMax H3（创作者标注）",
+        "MiniMax H3（来源标注）"
+      ],
+      "note": "The vendor page documents audio as an *input* reference (up to 3 clips, ≤15 s total). It does not state whether generated output carries an audio track, so `nativeAudio: true` here is an inference from the third-party corpus, not a vendor claim.",
+      "sources": ["https://platform.minimax.io/docs/guides/video-generation"]
+    },
+    {
+      "family": "sora",
+      "name": "Sora 2",
+      "vendor": "OpenAI",
+      "verification": "vendor-documented",
+      "nativeAudio": true,
+      "status": "retired",
+      "retiredOn": "2026-09-24",
+      "durations": "4 / 8 / 12 s, up to 20 s; extensions to 120 s",
+      "resolutions": "1280x720, 1920x1080, 1080x1920",
+      "aliases": ["sora-2", "Sora"],
+      "note": "The Videos API shut down on 2026-09-24 with no one-to-one replacement. These prompts are archival.",
+      "sources": ["https://developers.openai.com/api/docs/guides/video-generation"]
+    },
+    {
+      "family": "runway",
+      "name": "Runway Gen-4 / Aleph",
+      "vendor": "Runway",
+      "verification": "vendor-documented",
+      "nativeAudio": false,
+      "durations": "5–10 s per clip, extendable",
+      "resolutions": "720p / 1080p",
+      "aliases": ["runway-gen4", "runway-gen4.5", "runway-aleph-2.0", "Gen-4.5", "Aleph 2.0"],
+      "note": "Aleph adds edit verbs (add / remove / change / replace / re-light / re-style); Gen-4 is text-to-video. No native audio.",
+      "sources": ["https://docs.dev.runwayml.com/guides/models/"]
+    },
+    {
+      "family": "happyhorse",
+      "name": "HappyHorse 1.0",
+      "vendor": "HappyHorse",
+      "verification": "vendor-documented",
+      "nativeAudio": true,
+      "durations": "3–15 s",
+      "resolutions": "not stated by the vendor model list",
+      "aliases": ["happyhorse-1.0", "HappyHorse 1.0"],
+      "note": "Corpus median is 35 words, the shortest of any family. Audio is listed as built-in.",
+      "sources": ["https://docs.dev.runwayml.com/guides/models/"]
+    },
+    {
+      "family": "gemini-omni",
+      "name": "Gemini Omni Flash",
+      "vendor": "Google",
+      "verification": "vendor-documented",
+      "nativeAudio": true,
+      "durations": "not stated by the vendor model list",
+      "resolutions": "not stated by the vendor model list",
+      "aliases": ["gemini-omni", "Gemini Omni Flash 1.1", "Gemini Omni Flash"],
+      "note": "Accepted as an instruction-style, iterable surface.",
+      "sources": ["https://ai.google.dev/gemini-api/docs/models"]
+    },
+    {
+      "family": "hunyuan",
+      "name": "HunyuanVideo",
+      "vendor": "Tencent",
+      "verification": "vendor-documented",
+      "nativeAudio": false,
+      "durations": "5 s (129 frames, high-quality version)",
+      "resolutions": "720p recommended (720x1280, 1280x720, 1104x832, 832x1104, 960x960); 540p presets available",
+      "aliases": ["hunyuan-video", "HunyuanVideo"],
+      "note": "The base model generates no audio. HunyuanVideo-Avatar is audio-*driven* (audio in, not out) — a different variant, not a capability of the base model.",
+      "sources": ["https://github.com/Tencent-Hunyuan/HunyuanVideo"]
+    },
+    {
+      "family": "cogvideox",
+      "name": "CogVideoX",
+      "vendor": "Zhipu / Z.ai",
+      "verification": "vendor-documented",
+      "nativeAudio": false,
+      "durations": "5 or 10 s (1.5-5B); 6 s (2B/5B)",
+      "resolutions": "1360x768 (1.5-5B); 720x480 (2B/5B)",
+      "aliases": ["cogvideox-5b", "CogVideoX"],
+      "note": "Frame counts follow 16N+1 (1.5) or 8N+1 (2B/5B). No audio generation is documented.",
+      "sources": ["https://github.com/zai-org/CogVideo"]
+    },
+    {
+      "family": "ltx-video",
+      "name": "LTX-Video / LTX-2",
+      "vendor": "Lightricks",
+      "verification": "vendor-documented",
+      "nativeAudio": null,
+      "durations": "up to 60 s (LTX-Video 13B long-shot); up to 10 s with synchronized audio (LTX-2)",
+      "resolutions": "up to 4K at 50 FPS; default 1216x704 at 30 FPS",
+      "aliases": ["ltx-video", "LTX-Video"],
+      "note": "Audio belongs to LTX-2, not the earlier LTX-Video releases. The repository describes LTX-2 as the audio-video model; do not assume the 13B long-shot build generates sound.",
+      "sources": ["https://github.com/Lightricks/LTX-Video"]
+    },
+    {
+      "family": "mochi",
+      "name": "Mochi 1",
+      "vendor": "Genmo",
+      "verification": "vendor-documented",
+      "nativeAudio": false,
+      "durations": "not stated (API example uses 31 frames, no frame rate given)",
+      "resolutions": "480p (initial release)",
+      "aliases": ["mochi-1", "Mochi 1"],
+      "note": "Duration cannot be derived from the vendor material available on 2026-10-20; the frame count alone is not a duration without a frame rate.",
+      "sources": ["https://github.com/genmoai/models"]
+    },
+    {
+      "family": "luma",
+      "name": "Luma Ray",
+      "vendor": "Luma AI",
+      "verification": "third-party-only",
+      "nativeAudio": false,
+      "durations": "5 s in the documented examples",
+      "resolutions": "540p / 720p / 1080p / 4K",
+      "aliases": ["luma-ray-3.2", "Ray 2", "Ray 2 Flash"],
+      "note": "The corpus names `luma-ray-3.2`. The vendor documentation consulted on 2026-10-20 lists Ray 2 and Ray 2 Flash only, so the 3.2 naming is unconfirmed.",
+      "sources": ["https://docs.lumalabs.ai/docs/video-generation"]
+    },
+    {
+      "family": "jimeng",
+      "name": "即梦 / Jimeng",
+      "vendor": "ByteDance (CapCut)",
+      "verification": "third-party-only",
+      "nativeAudio": true,
+      "durations": "not verified",
+      "resolutions": "not verified",
+      "aliases": ["jimeng-3", "即梦 3.0"],
+      "note": "No vendor documentation was retrievable on 2026-10-20. Every claim in the corpus about this family is third-party.",
+      "sources": []
+    },
+    {
+      "family": "pika",
+      "name": "Pika",
+      "vendor": "Pika Labs",
+      "verification": "third-party-only",
+      "nativeAudio": false,
+      "durations": "not verified",
+      "resolutions": "not verified",
+      "aliases": ["pika-2.5", "Pika 2.5"],
+      "note": "The vendor docs endpoint did not respond on 2026-10-20. The corpus's 91% negative-constraint rate reflects the `no morphing` convention, not a vendor requirement.",
+      "sources": []
+    },
+    {
+      "family": "higgsfield",
+      "name": "Higgsfield",
+      "vendor": "Higgsfield AI",
+      "verification": "third-party-only",
+      "nativeAudio": false,
+      "durations": "not verified",
+      "resolutions": "not verified",
+      "aliases": ["higgsfield-soul", "Higgsfield Soul", "Higgsfield Genjutsu"],
+      "note": "The product site describes Genjutsu as motion transfer and object swapping but publishes no per-model duration or audio spec.",
+      "sources": ["https://higgsfield.ai/"]
+    }
+  ]
+}

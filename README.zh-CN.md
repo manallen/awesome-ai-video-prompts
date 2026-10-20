@@ -155,6 +155,27 @@ $ aivp inspect "lanshu-video-kit::k4-001"
 # 输出运镜类型、音频线索、时长、时间轴、负向约束、结构化标签等
 ```
 
+### 能力核实分级
+
+语料里的模型比本项目**能核实**的模型多。`aivp families` 列出每个族的能力来源：
+
+```bash
+$ aivp families
+family          records  audio  verification        name
+------------------------------------------------------------------------------
+seedance          1096   yes   vendor-documented  Seedance
+minimax            722   ?     vendor-documented  MiniMax H3 / Hailuo
+kling               94   yes   vendor-documented  Kling
+jimeng              22   yes   third-party-only   即梦 / Jimeng
+pika                22   no    third-party-only   Pika
+higgsfield           9   no    third-party-only   Higgsfield
+```
+
+音频字段刻意做成三态：`?` 表示厂商只把音频写成**输入**参考，没说输出带音轨。两个命名陷阱记录在 [prompts/families.json](prompts/families.json)：
+
+- **Kling 4.0**：语料里有 12 条，但 2026-10-20 查阅的厂商模型列表里**没有**它 —— 只能当历史模板看。
+- **Luma Ray 3.2**：语料这么写，厂商文档只有 Ray 2。
+
 所有数字都是**字面模式匹配**，描述的是**这个语料库**，不是模型的要求 —— 没写某个线索不等于模型不需要。
 
 ---

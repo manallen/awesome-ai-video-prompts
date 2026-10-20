@@ -19,6 +19,7 @@ IMPORTED LAYER
   get <record-id>             One record with full provenance
   credits [--source <id>]     Attribution lines
   stats                       Structural statistics per model family
+  families [--unverified]     Capability registry + verification level per family
   inspect <record-id>         Prompt anatomy: camera, audio, duration
 
 TOOLS
@@ -49,6 +50,7 @@ EXAMPLES
   aivp find "starship bridge" --family minimax --kind prompt
   aivp get "lanshu-video-kit::sd-001"
   aivp stats --min 20
+  aivp families --unverified
   aivp inspect "lanshu-video-kit::k4-001"
   aivp translate sora-2 veo-3.1 ./my-prompt.txt
   cat prompt.txt | aivp validate kling-3.0
